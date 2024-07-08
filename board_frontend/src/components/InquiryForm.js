@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-function InquiryForm ({ onInquiryAdded }) {
-
-  const [ title, setTitle ] = useState('');
-  const [ content, setContent ] = useState('');
-  const [ customerEmail, setCustomerEmail ] = useState('');
-  const [ password, setPassword ] = useState('');
+function InquiryForm({ onInquiryAdded }) {
+  const [title, setTitle] = useState('');
+  const [content, setContent] = useState('');
+  const [customerEmail, setCustomerEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -22,7 +21,6 @@ function InquiryForm ({ onInquiryAdded }) {
             setPassword('');
           })
           .catch(error => console.error('게시글 작성에 실패했습니다.', error));
-          
   };
 
   return (
@@ -30,39 +28,33 @@ function InquiryForm ({ onInquiryAdded }) {
       <input
         type="text"
         placeholder="Title"
-        value={ title }
-        onChange={(e) => setTitle (e.target.value)}
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
       />
-
       <textarea
         placeholder="Content"
-        value={ content }
+        value={content}
         onChange={(e) => setContent(e.target.value)}
         required
-        style={{width: '100%', height: '200px'}}
+        style={{ width: '100%', height: '200px' }}
       />
-
       <input
         type="email"
         placeholder="Email"
-        value={ customerEmail }
+        value={customerEmail}
         onChange={(e) => setCustomerEmail(e.target.value)}
         required
       />
-
       <input
         type="password"
         placeholder="Password"
-        value={ password }
+        value={password}
         onChange={(e) => setPassword(e.target.value)}
         required
       />
-
       <button type="submit">등록</button>
     </form>
-
   );
-  
 }
 
 export default InquiryForm;
