@@ -12,60 +12,56 @@ import com.example.repository.NoticeRepository;
 
 @Service
 public class NoticeService {
-	
-	@Autowired
-	private NoticeRepository noticeRepository;
-	
-	public List<Notice> findAll() {
-		return noticeRepository.findAll();
-		
-	}
 
-	public Notice save(Notice notice) {
-		notice.setCreateAt(LocalDateTime.now());
-		return noticeRepository.save(notice);	
-	}
-	
-	public Notice update(Long id, Notice updateNotice, String password) {
-		Optional<Notice> noticeOptional = noticeRepository.findById(id);
-		if (noticeOptional.isPresent()) {
-			
-			// 비밀번호 확인
-			Notice notice = noticeOptional.get();
-			if (notice.getPassword().equals(password)) {
-				notice.setTitle(updateNotice.getTitle());
-				notice.setContent(updateNotice.getContent());
-				return noticeRepository.save(notice);
-			}
-			else {
-				throw new IllegalArgumentException("비밀번호가 일치하지 않습니다");
-			}
-		}
-		else {
-			throw new IllegalArgumentException("게시글을 찾을 수 없습니다.");
-		}	
-		
-	}
-	
-	public void deleteById(Long id, String password) {
-		Optional<Notice> noticeOptional = noticeRepository.findById(id);
-		if (noticeOptional.isPresent()) {
-			
-			// 비밀번호 확인
-			Notice notice = noticeOptional.get();
-			if (notice.getPassword().equals(password)) {
-				noticeRepository.deleteById(id);
-			}
-			else {
-				throw new IllegalArgumentException("비밀번호가 일치하지 않습니다");
-			}
-		}
-		else {
-			throw new IllegalArgumentException("게시글을 찾을 수 없습니다.");
-		}	
-		
-	}
+    @Autowired
+    private NoticeRepository noticeRepository;
+
+    public List<Notice> findAll() {
+        return noticeRepository.findAll();
+    }
+
+    public Notice findById(Long id) {
+        return noticeRepository.findById(id)
+            .orElseThrow(() -> new IllegalArgumentException("게시글을 찾을 수 없습니다."));
+    }
+
+    public Notice save(Notice notice) {
+        notice.setCreateAt(LocalDateTime.now());
+        return noticeRepository.save(notice);
+    }
+
+    public Notice update(Long id, Notice updatedNotice, String password) {
+        Notice notice = noticeRepository.findById(id)
+            .orElseThrow(() -> new IllegalArgumentException("게시글을 찾을 수 없습니다."));
+
+        if (notice.getPassword().equals(password)) {
+        	notice.setTitle(updatedNotice.getTitle());
+        	notice.setContent(updatedNotice.getContent());
+            return noticeRepository.save(notice);
+        } else {
+            throw new IllegalArgumentException("비밀번호가 일치하지 않습니다");
+        }
+    }
+
+    public void deleteById(Long id, String password) {
+        Notice notice = noticeRepository.findById(id)
+            .orElseThrow(() -> new IllegalArgumentException("게시글을 찾을 수 없습니다."));
+
+        if (notice.getPassword().equals(password)) {
+            noticeRepository.deleteById(id);
+        } else {
+            throw new IllegalArgumentException("비밀번호가 일치하지 않습니다");
+        }
+    }
+
+    public void incrementViewCount(Long id) {
+        Notice notice = noticeRepository.findById(id)
+            .orElseThrow(() -> new IllegalArgumentException("게시글을 찾을 수 없습니다."));
+        notice.setViewCount(notice.getViewCount() + 1);
+        noticeRepository.save(notice);
+    }
 }
+
 
 
 

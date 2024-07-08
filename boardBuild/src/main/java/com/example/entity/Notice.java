@@ -17,5 +17,6 @@ public class Notice {
     private String content;
     private String author;
     private LocalDateTime createAt;
+    private int viewCount = 0;
     
 }

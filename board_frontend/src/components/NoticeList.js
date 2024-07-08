@@ -19,7 +19,7 @@ function NoticeList() {
           <li key={ notice.id }>
             <h2>{ notice.title }</h2>
             <p>{ notice.content }</p>
-            <small>{ notice.author } - { notice.createdAt }</small>
+            <small>{notice.author} - {new Date(notice.createAt).toLocaleString()}</small>
           </li>
         ))}
       </ul>

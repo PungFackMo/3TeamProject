@@ -14,25 +14,34 @@ public class InquiryController {
 
     @Autowired
     private InquiryService inquiryService;
-    
+
     @GetMapping
     public List<Inquiry> getAllInquiries() {
         return inquiryService.findAll();
     }
-    
+
+    @GetMapping("/{id}")
+    public Inquiry getInquiry(@PathVariable Long id) {
+        return inquiryService.findById(id);
+    }
+
     @PostMapping
     public Inquiry createInquiry(@RequestBody Inquiry inquiry) {
         return inquiryService.save(inquiry);
     }
-    
+
     @PutMapping("/{id}")
-    public Inquiry updateInquiry(@PathVariable Long id, 
-            @RequestBody Inquiry updatedInquiry, @RequestParam String password) {
+    public Inquiry updateInquiry(@PathVariable Long id, @RequestBody Inquiry updatedInquiry, @RequestParam String password) {
         return inquiryService.update(id, updatedInquiry, password);
     }
-    
+
     @DeleteMapping("/{id}")
     public void deleteInquiry(@PathVariable Long id, @RequestParam String password) {
         inquiryService.deleteById(id, password);
+    }
+
+    @PutMapping("/increment-view/{id}")
+    public void incrementViewCount(@PathVariable Long id) {
+        inquiryService.incrementViewCount(id);
     }
 }
