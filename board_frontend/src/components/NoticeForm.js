@@ -6,18 +6,20 @@ function NoticeForm ({ onNoticeAdded }) {
   const [ title, setTitle ] = useState('');
   const [ content, setContent ] = useState('');
   const [ author, setAuthor ] = useState('');
+  const [ password, setPassword ] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     // 스프링으로 내용 전송
-    const newNotice = { title, content, author };
+    const newNotice = { title, content, author, password };
     axios.post('/api/notice', newNotice)
           .then(response => {
             onNoticeAdded(response.data);
             setTitle('');
             setContent('');
             setAuthor('');
+            setPassword('');
           })
           .catch(error => console.error('게시글 작성에 실패했습니다.', error));
           
@@ -43,6 +45,13 @@ function NoticeForm ({ onNoticeAdded }) {
         placeholder="Author"
         value={ author }
         onChange={(e) => setAuthor(e.target.value)}
+      />
+
+      <input
+        type="password"
+        placeholder="Password"
+        value={ password }
+        onChange={(e) => setPassword(e.target.value)}
       />
 
       <button type="submit">등록</button>

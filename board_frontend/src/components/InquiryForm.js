@@ -6,18 +6,20 @@ function InquiryForm ({ onInquiryAdded }) {
   const [ title, setTitle ] = useState('');
   const [ content, setContent ] = useState('');
   const [ customerEmail, setCustomerEmail ] = useState('');
+  const [ password, setPassword ] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     // 스프링으로 내용 전송
-    const newInquiry = { title, content, customerEmail };
+    const newInquiry = { title, content, customerEmail, password };
     axios.post('/api/inquiry', newInquiry)
           .then(response => {
             onInquiryAdded(response.data);
             setTitle('');
             setContent('');
             setCustomerEmail('');
+            setPassword('');
           })
           .catch(error => console.error('게시글 작성에 실패했습니다.', error));
           
@@ -36,6 +38,8 @@ function InquiryForm ({ onInquiryAdded }) {
         placeholder="Content"
         value={ content }
         onChange={(e) => setContent(e.target.value)}
+        required
+        style={{width: '100%', height: '200px'}}
       />
 
       <input
@@ -43,6 +47,15 @@ function InquiryForm ({ onInquiryAdded }) {
         placeholder="Email"
         value={ customerEmail }
         onChange={(e) => setCustomerEmail(e.target.value)}
+        required
+      />
+
+      <input
+        type="password"
+        placeholder="Password"
+        value={ password }
+        onChange={(e) => setPassword(e.target.value)}
+        required
       />
 
       <button type="submit">등록</button>

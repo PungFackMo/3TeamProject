@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Link, Route, Switch, useRouteMatch } from 'react-router-dom';
+import { Link, Route, Routes, useMatch } from 'react-router-dom';
 import axios from 'axios';
 import NoticeForm from './NoticeForm';
 
 function NoticePage() {
     const [notices, setNotices] = useState([]);
-    const { path, url } = useRouteMatch();
+    const { path, url } = useMatch();
 
     useEffect(() => {
         axios.get('/api/notice')
@@ -15,7 +15,7 @@ function NoticePage() {
 
     return (
         <div>
-            <h1>Notices</h1>
+            <h1>공지사항</h1>
             <Link to={`${url}/new`}><button>Write New Notice</button></Link>
             <ul>
                 {notices.map(notice => (
@@ -27,11 +27,11 @@ function NoticePage() {
                 ))}
             </ul>
 
-            <Switch>
+            <Routes>
                 <Route path={`${path}/new`}>
                     <NoticeForm onNoticeAdded={(newNotice) => setNotices([...notices, newNotice])} />
                 </Route>
-            </Switch>
+            </Routes>
         </div>
     );
 }
