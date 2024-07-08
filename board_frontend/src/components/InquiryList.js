@@ -5,7 +5,7 @@ function InquiryList() {
   const [inquiries, setInquiries] = useState([]);
 
   useEffect(() => {
-    axios.get('/api/inquiry')
+    axios.get('http://localhost:8080/api/inquiry')
           .then(response => setInquiries(response.data))
           .catch(error => console.error('서버와 연결되지 않습니다', error));
   }, []);

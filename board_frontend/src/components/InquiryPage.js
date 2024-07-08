@@ -8,9 +8,9 @@ function InquiryPage() {
     const [showForm, setShowForm] = useState(false);
 
     useEffect(() => {
-        axios.get('/api/inquiry')
+        axios.get('http://localhost:8080/api/inquiry')
             .then(response => setInquiries(response.data))
-            .catch(error => console.error('There was an error fetching the notices!', error));
+            .catch(error => console.error('There was an error fetching the inquiries!', error));
     }, []);
 
     const handleInquiryAdded = (newInquiry) => {
