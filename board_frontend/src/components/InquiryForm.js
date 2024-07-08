@@ -4,19 +4,19 @@ import axios from 'axios';
 function InquiryForm({ onInquiryAdded }) {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
-  const [customerEmail, setCustomerEmail] = useState('');
+  const [author, setAuthor] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const newInquiry = { title, content, author: customerEmail, password };
-    axios.post('/api/inquiry', newInquiry)
+    const newInquiry = { title, content, author, password };
+    axios.post('http://localhost:8080/api/inquiry', newInquiry)
       .then(response => {
         onInquiryAdded(response.data);
         setTitle('');
         setContent('');
-        setCustomerEmail('');
+        setAuthor('');
         setPassword('');
       })
       .catch(error => console.error('게시글 작성에 실패했습니다.', error));
@@ -29,6 +29,7 @@ function InquiryForm({ onInquiryAdded }) {
         placeholder="Title"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
+        required
       />
       <textarea
         placeholder="Content"
@@ -39,9 +40,9 @@ function InquiryForm({ onInquiryAdded }) {
       />
       <input
         type="email"
-        placeholder="Email"
-        value={customerEmail}
-        onChange={(e) => setCustomerEmail(e.target.value)}
+        placeholder="Author Email"
+        value={author}
+        onChange={(e) => setAuthor(e.target.value)}
         required
       />
       <input

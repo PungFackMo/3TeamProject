@@ -8,7 +8,7 @@ function InquiryPage() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        axios.get('/api/inquiry')
+        axios.get('http://localhost:8080/api/inquiry')
         .then(response => setInquiries(response.data))
         .catch(error => console.error('There was an error fetching the notices!', error));
     }, []);
@@ -32,7 +32,7 @@ function InquiryPage() {
                 <td>{index + 1}</td>
                 <td>{inquiry.title}</td>
                 <td>{inquiry.author}</td>
-                <td>{inquiry.viewCount}</td>
+                <td>{inquiry.viewCount || 0}</td>
                 </tr>
             ))}
             </tbody>

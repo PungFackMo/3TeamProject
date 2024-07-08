@@ -14,8 +14,8 @@ function App() {
           </ul>
         </nav>
         <Routes>
-          <Route path="/inquiry" element={<InquiryPage />} />
-          <Route path="/notice" element={<NoticePage />} />
+          <Route path="/inquiry/*" element={<InquiryPage />} />
+          <Route path="/notice/*" element={<NoticePage />} />
           <Route path="/" element={<HomePage />} />
         </Routes>
       </div>
