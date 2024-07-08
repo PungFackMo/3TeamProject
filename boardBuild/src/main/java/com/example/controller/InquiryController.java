@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import com.example.entity.Inquiry;
+import com.example.repository.InquiryRepository;
 import com.example.service.InquiryService;
 
 @RestController
@@ -19,6 +20,7 @@ public class InquiryController {
 	public List<Inquiry> getAllInquiries() {
 		return inquiryService.findAll();
 	}
+	
 	
 	@PostMapping
 	public Inquiry createInquiry(@RequestBody Inquiry inquiry) {
@@ -38,31 +40,3 @@ public class InquiryController {
 	}
 	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

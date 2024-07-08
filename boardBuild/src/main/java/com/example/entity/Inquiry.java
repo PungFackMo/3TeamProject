@@ -18,6 +18,7 @@ public class Inquiry {
     private String content;
     private String author;
     private LocalDateTime createAt;
+//    private int viewCount;
     
 
 }
