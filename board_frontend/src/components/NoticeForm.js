@@ -12,11 +12,16 @@ function NoticeForm() {
     e.preventDefault();
 
     const newNotice = { title, content, author };
-    axios.post('http://localhost:8080/api/notice', newNotice)
-      .then(response => {
-        navigate('/notice');
-      })
-      .catch(error => console.error('공지사항 작성에 실패했습니다.', error));
+    // 게시글 쓸 때 엔터 그대로 적용하기
+    axios.post('http://localhost:8080/api/notice', newNotice, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => {
+      navigate('/notice');
+    })
+    .catch(error => console.error('공지사항 작성에 실패했습니다.', error));
   };
 
   return (

@@ -13,11 +13,15 @@ function InquiryForm() {
     e.preventDefault();
 
     const newInquiry = { title, content, author: customerEmail };
-    axios.post('http://localhost:8080/api/inquiry', newInquiry)
-      .then(response => {
-        navigate('/inquiry');
-      })
-      .catch(error => console.error('게시글 작성에 실패했습니다.', error));
+    axios.post('http://localhost:8080/api/inquiry', newInquiry , {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => {
+      navigate('/inquiry');
+    })
+    .catch(error => console.error('게시글 작성에 실패했습니다.', error));
   };
 
   return (
