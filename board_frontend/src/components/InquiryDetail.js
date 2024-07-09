@@ -6,6 +6,7 @@ function InquiryDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
   const [inquiry, setInquiry] = useState(null);
+  // const [currentUser, setCurrentUser] = useState(null); // 현재 로그인한 사용자 정보
 
   useEffect(() => {
     const fetchInquiry = async () => {
@@ -18,6 +19,11 @@ function InquiryDetail() {
     };
 
     fetchInquiry();
+
+      // 여기서 사용자 정보를 가져오는 API 호출 (실제로는 로그인 상태 관리에 맞게 수정 필요)
+    // axios.get(`http://localhost:8080/api/user/current`) 
+    //   .then(response => setCurrentUser(response.data))
+    //   .catch(error => console.error('사용자 정보를 불러오는 중 오류가 발생했습니다!', error));
 
     axios.put(`http://localhost:8080/api/inquiry/increment-view/${id}`)
       .catch(error => console.error('조회수 증가 중 오류가 발생했습니다!', error));
@@ -49,9 +55,13 @@ function InquiryDetail() {
       <h1>{inquiry.title}</h1>
       <p>{inquiry.content}</p>
       <small>{inquiry.author} - {new Date(inquiry.createAt).toLocaleString()}</small>
-
-      <button onClick={handleEdit}>수정</button>
-      <button onClick={handleDelete}>삭제</button>
+{/* 로그인 사용자와 글 작성자가 동일한 경우에만 수정 및 삭제 버튼을 보여줌 */}
+      {/* {currentUser && currentUser.nickname === notice.author && (
+        <div> */}
+          <button onClick={handleEdit}>수정</button>
+          <button onClick={handleDelete}>삭제</button>
+        {/* </div>
+      )} */}
       <button onClick={handleBackToList}>목록</button>
     </div>
   );
