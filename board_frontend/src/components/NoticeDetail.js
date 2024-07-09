@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
+import '../style.css';
+
 function NoticeDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -52,10 +54,14 @@ function NoticeDetail() {
   }
 
   return (
-    <div>
+    <div className='container'>
       <h1>{notice.title}</h1>
-      <p>{notice.content}</p>
-      <small>{notice.author} - {new Date().toLocaleString()}</small>
+      <p style={{ whiteSpace: 'pre-line' }}>{notice.content}</p>
+      <small>{notice.author} - {new Date(notice.createdAt).toLocaleString()}</small>
+      {/* 글이 수정되었을 경우 수정된 시간도 표시 */}
+      {notice.updatedAt && notice.updatedAt !== notice.createdAt && (
+        <small> (수정됨: {new Date(notice.updatedAt).toLocaleString()})</small>
+      )}
 
 {/* 로그인 사용자와 글 작성자가 동일한 경우에만 수정 및 삭제 버튼을 보여줌 */}
       {/* {currentUser && currentUser.nickname === notice.author && (

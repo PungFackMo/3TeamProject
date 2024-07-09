@@ -17,7 +17,7 @@ public class NoticeController {
     private NoticeService noticeService;
 
     @GetMapping
-    public List<Notice> getAllInquiries() {
+    public List<Notice> getAllNotices() {
         return noticeService.findAll();
     }
 

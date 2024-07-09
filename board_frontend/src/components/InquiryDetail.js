@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
+import '../style.css'
+
 function InquiryDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -51,10 +53,15 @@ function InquiryDetail() {
   }
 
   return (
-    <div>
+    <div className='container'>
       <h1>{inquiry.title}</h1>
-      <p>{inquiry.content}</p>
-      <small>{inquiry.author} - {new Date().toLocaleString()}</small>
+      <p style={{ whiteSpace: 'pre-line' }}>{inquiry.content}</p>
+      <small>{inquiry.author} - {new Date(inquiry.createdAt).toLocaleString()}</small>
+      {/* 글이 수정되었을 경우 수정된 시간도 표시 */}
+      {inquiry.updatedAt && inquiry.updatedAt !== inquiry.createdAt && (
+        <small> (수정됨: {new Date(inquiry.updatedAt).toLocaleString()})</small>
+      )}
+      
 {/* 로그인 사용자와 글 작성자가 동일한 경우에만 수정 및 삭제 버튼을 보여줌 */}
       {/* {currentUser && currentUser.nickname === notice.author && (
         <div> */}

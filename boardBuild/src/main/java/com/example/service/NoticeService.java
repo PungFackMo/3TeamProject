@@ -31,14 +31,15 @@ public class NoticeService {
     }
     
     public Notice update(Long id, Notice updatedNotice) {
-        Notice existingNotice = noticeRepository.findById(id).orElse(null);
-        if (existingNotice != null) {
-            existingNotice.setTitle(updatedNotice.getTitle());
-            existingNotice.setContent(updatedNotice.getContent());
-            existingNotice.setAuthor(updatedNotice.getAuthor());
-            return noticeRepository.save(existingNotice);
-        }
-        return null;
+        Notice existingNotice = noticeRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("공지사항을 찾을 수 없습니다."));
+
+        existingNotice.setTitle(updatedNotice.getTitle());
+        existingNotice.setContent(updatedNotice.getContent());
+        existingNotice.setAuthor(updatedNotice.getAuthor());
+        existingNotice.setUpdatedAt(LocalDateTime.now());
+
+        return noticeRepository.save(existingNotice);
     }
 
 

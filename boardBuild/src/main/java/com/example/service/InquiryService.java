@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import com.example.entity.Inquiry;
 import com.example.repository.InquiryRepository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -19,7 +20,7 @@ public class InquiryService {
     }
 
     public Inquiry findById(Long id) {
-        return inquiryRepository.findById(id).orElse(null);
+        return inquiryRepository.findById(id).orElseThrow(() -> new RuntimeException("문의를 찾을 수 없습니다."));
     }
 
     public Inquiry save(Inquiry inquiry) {
@@ -27,13 +28,15 @@ public class InquiryService {
     }
 
     public Inquiry update(Long id, Inquiry updatedInquiry) {
-        Inquiry existingInquiry = inquiryRepository.findById(id).orElse(null);
-        if (existingInquiry != null) {
-            updatedInquiry.setId(id);
-            updatedInquiry.setViewCount(existingInquiry.getViewCount());
-            return inquiryRepository.save(updatedInquiry);
-        }
-        return null;
+        Inquiry existingInquiry = inquiryRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("문의를 찾을 수 없습니다."));
+
+        existingInquiry.setTitle(updatedInquiry.getTitle());
+        existingInquiry.setContent(updatedInquiry.getContent());
+        existingInquiry.setAuthor(updatedInquiry.getAuthor());
+        existingInquiry.setUpdatedAt(LocalDateTime.now());
+
+        return inquiryRepository.save(existingInquiry);
     }
 
     public void deleteById(Long id) {
@@ -43,16 +46,12 @@ public class InquiryService {
         inquiryRepository.delete(inquiry);
     }
 
-
     public void incrementViewCount(Long id) {
-        Inquiry inquiry = inquiryRepository.findById(id).orElse(null);
-        if (inquiry != null) {
-            inquiry.setViewCount(inquiry.getViewCount() + 1);
-            inquiryRepository.save(inquiry);
-        }
+        Inquiry inquiry = inquiryRepository.findById(id).orElseThrow(() -> new RuntimeException("문의를 찾을 수 없습니다."));
+        inquiry.setViewCount(inquiry.getViewCount() + 1);
+        inquiryRepository.save(inquiry);
     }
 }
-
 
 
 
