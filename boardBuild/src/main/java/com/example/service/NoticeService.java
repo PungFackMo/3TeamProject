@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.entity.Inquiry;
 import com.example.entity.Notice;
 import com.example.repository.NoticeRepository;
 
@@ -29,29 +30,24 @@ public class NoticeService {
         notice.setCreateAt(LocalDateTime.now());
         return noticeRepository.save(notice);
     }
-
-    public Notice update(Long id, Notice updatedNotice, String password) {
-        Notice notice = noticeRepository.findById(id)
-            .orElseThrow(() -> new IllegalArgumentException("게시글을 찾을 수 없습니다."));
-
-        if (notice.getPassword().equals(password)) {
-        	notice.setTitle(updatedNotice.getTitle());
-        	notice.setContent(updatedNotice.getContent());
-            return noticeRepository.save(notice);
-        } else {
-            throw new IllegalArgumentException("비밀번호가 일치하지 않습니다");
+    
+    public Notice update(Long id, Notice updatedNotice) {
+        Notice existingNotice = noticeRepository.findById(id).orElse(null);
+        if (existingNotice != null) {
+            existingNotice.setTitle(updatedNotice.getTitle());
+            existingNotice.setContent(updatedNotice.getContent());
+            existingNotice.setAuthor(updatedNotice.getAuthor());
+            return noticeRepository.save(existingNotice);
         }
+        return null;
     }
 
-    public void deleteById(Long id, String password) {
-        Notice notice = noticeRepository.findById(id)
-            .orElseThrow(() -> new IllegalArgumentException("게시글을 찾을 수 없습니다."));
 
-        if (notice.getPassword().equals(password)) {
-            noticeRepository.deleteById(id);
-        } else {
-            throw new IllegalArgumentException("비밀번호가 일치하지 않습니다");
-        }
+    public void deleteById(Long id) {
+        Notice notice = noticeRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("공지를 찾을 수 없습니다."));
+        
+        noticeRepository.delete(notice);
     }
 
     public void incrementViewCount(Long id) {

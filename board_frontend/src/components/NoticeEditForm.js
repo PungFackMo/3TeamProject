@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate, useLocation } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 function NoticeEditForm() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const location = useLocation();
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [author, setAuthor] = useState('');
-  const [password, setPassword] = useState(location.state.password || '');
 
   useEffect(() => {
     const fetchNotice = async () => {
@@ -20,24 +18,24 @@ function NoticeEditForm() {
         setContent(notice.content);
         setAuthor(notice.author);
       } catch (error) {
-        console.error('공지 정보를 불러오는 중 오류가 발생했습니다!', error);
+        console.error('공지사항 정보를 불러오는 중 오류가 발생했습니다!', error);
       }
     };
 
     fetchNotice();
   }, [id]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const updatedNotice = { title, content, author, password };
-    axios.put(`http://localhost:8080/api/notice/${id}`, updatedNotice, {
-      params: { password }
-    })
-    .then(() => {
-      navigate(`/notices/${id}`);
-    })
-    .catch(error => console.error('공지 수정 중 오류가 발생했습니다.', error));
+    try {
+      const updatedNotice = { title, content, author };
+      await axios.put(`http://localhost:8080/api/notice/${id}`, updatedNotice);
+
+      navigate(`/notice/${id}`);
+    } catch (error) {
+      console.error('공지사항 수정 중 오류가 발생했습니다.', error);
+    }
   };
 
   return (
@@ -52,18 +50,14 @@ function NoticeEditForm() {
         placeholder="Content"
         value={content}
         onChange={(e) => setContent(e.target.value)}
+        required
+        style={{ width: '100%', height: '200px' }}
       />
       <input
         type="text"
         placeholder="Author"
         value={author}
         onChange={(e) => setAuthor(e.target.value)}
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
       />
       <button type="submit">수정</button>
     </form>

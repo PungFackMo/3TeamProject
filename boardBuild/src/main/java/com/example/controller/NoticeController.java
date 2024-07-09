@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import com.example.entity.Inquiry;
 import com.example.entity.Notice;
 import com.example.service.NoticeService;
 
@@ -30,14 +31,15 @@ public class NoticeController {
         return noticeService.save(notice);
     }
 
+   
     @PutMapping("/{id}")
-    public Notice updateNotice(@PathVariable Long id, @RequestBody Notice updatedNotice, @RequestParam String password) {
-        return noticeService.update(id, updatedNotice, password);
+    public Notice updateNotice(@PathVariable Long id, @RequestBody Notice updatedNotice) {
+        return noticeService.update(id, updatedNotice);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteInquiry(@PathVariable Long id, @RequestParam String password) {
-        noticeService.deleteById(id, password);
+    public void deleteInquiry(@PathVariable Long id) {
+        noticeService.deleteById(id);
     }
 
     @PutMapping("/increment-view/{id}")

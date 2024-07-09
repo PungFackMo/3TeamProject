@@ -7,13 +7,12 @@ function InquiryForm() {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [customerEmail, setCustomerEmail] = useState('');
-  const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const newInquiry = { title, content, author: customerEmail, password };
+    const newInquiry = { title, content, author: customerEmail };
     axios.post('http://localhost:8080/api/inquiry', newInquiry)
       .then(response => {
         navigate('/inquiry');
@@ -42,13 +41,6 @@ function InquiryForm() {
         placeholder="Email"
         value={customerEmail}
         onChange={(e) => setCustomerEmail(e.target.value)}
-        required
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
         required
       />
       <button type="submit">등록</button>

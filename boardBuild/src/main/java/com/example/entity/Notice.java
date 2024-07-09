@@ -12,7 +12,6 @@ public class Notice {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String password;
     private String title;
     private String content;
     private String author;

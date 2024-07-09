@@ -31,13 +31,13 @@ public class InquiryController {
     }
 
     @PutMapping("/{id}")
-    public Inquiry updateInquiry(@PathVariable Long id, @RequestBody Inquiry updatedInquiry, @RequestParam String password) {
-        return inquiryService.update(id, updatedInquiry, password);
+    public Inquiry updateInquiry(@PathVariable Long id, @RequestBody Inquiry updatedInquiry) {
+        return inquiryService.update(id, updatedInquiry);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteInquiry(@PathVariable Long id, @RequestParam String password) {
-        inquiryService.deleteById(id, password);
+    public void deleteInquiry(@PathVariable Long id) {
+        inquiryService.deleteById(id);
     }
 
     @PutMapping("/increment-view/{id}")

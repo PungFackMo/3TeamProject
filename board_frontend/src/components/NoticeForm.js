@@ -3,22 +3,20 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 function NoticeForm() {
-  
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [author, setAuthor] = useState('');
-  const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const newNotice = { title, content, author: author, password };
+    const newNotice = { title, content, author };
     axios.post('http://localhost:8080/api/notice', newNotice)
       .then(response => {
         navigate('/notice');
       })
-      .catch(error => console.error('게시글 작성에 실패했습니다.', error));
+      .catch(error => console.error('공지사항 작성에 실패했습니다.', error));
   };
 
   return (
@@ -42,21 +40,10 @@ function NoticeForm() {
         placeholder="Author"
         value={author}
         onChange={(e) => setAuthor(e.target.value)}
-        required
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        required
       />
       <button type="submit">등록</button>
     </form>
   );
 }
 
-
-
 export default NoticeForm;
-
