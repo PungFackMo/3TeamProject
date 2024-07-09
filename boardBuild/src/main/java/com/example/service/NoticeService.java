@@ -27,7 +27,6 @@ public class NoticeService {
     }
 
     public Notice save(Notice notice) {
-        notice.setCreateAt(LocalDateTime.now());
         return noticeRepository.save(notice);
     }
     

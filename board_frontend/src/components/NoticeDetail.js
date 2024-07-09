@@ -55,7 +55,7 @@ function NoticeDetail() {
     <div>
       <h1>{notice.title}</h1>
       <p>{notice.content}</p>
-      <small>{notice.author} - {new Date(notice.createdAt).toLocaleString()}</small>
+      <small>{notice.author} - {new Date().toLocaleString()}</small>
 
 {/* 로그인 사용자와 글 작성자가 동일한 경우에만 수정 및 삭제 버튼을 보여줌 */}
       {/* {currentUser && currentUser.nickname === notice.author && (

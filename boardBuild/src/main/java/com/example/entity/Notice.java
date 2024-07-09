@@ -1,6 +1,7 @@
 package com.example.entity;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -15,7 +16,7 @@ public class Notice {
     private String title;
     private String content;
     private String author;
-    private LocalDateTime createAt;
     private int viewCount = 0;
+    
     
 }

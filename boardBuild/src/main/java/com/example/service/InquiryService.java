@@ -30,7 +30,6 @@ public class InquiryService {
         Inquiry existingInquiry = inquiryRepository.findById(id).orElse(null);
         if (existingInquiry != null) {
             updatedInquiry.setId(id);
-            updatedInquiry.setCreateAt(existingInquiry.getCreateAt());
             updatedInquiry.setViewCount(existingInquiry.getViewCount());
             return inquiryRepository.save(updatedInquiry);
         }
