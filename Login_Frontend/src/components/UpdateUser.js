@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useLocation, useNavigate } from 'react-router-dom';
+import Modal from 'react-modal';
+
+Modal.setAppElement('#root');
 
 function UpdateUser() {
   const [user, setUser] = useState({
@@ -11,6 +14,10 @@ function UpdateUser() {
     phone: '',
     userEmail: ''
   });
+
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -23,7 +30,7 @@ function UpdateUser() {
       const fetchData = async () => {
         try {
           const response = await axios.get('http://localhost:8080/user', {
-            withCredentials: true, // 자격 증명(쿠키, 인증 헤더 등)을 포함하여 HTTP 요청
+            withCredentials: true,
           });
           if (response.status === 200) {
             setUser(response.data);
@@ -41,18 +48,26 @@ function UpdateUser() {
     setUser({ ...user, [id]: value });
   };
 
+  const handlePasswordChange = (e) => {
+    setNewPassword(e.target.value);
+  };
+
+  const handleConfirmPasswordChange = (e) => {
+    setConfirmPassword(e.target.value);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      if (!user.password) {
+      if (!newPassword) {
         alert("비밀번호를 입력해주세요.");
         return;
       }
-      if (user.password !== user.confirmPassword) {
+      if (newPassword !== confirmPassword) {
         alert("비밀번호가 일치하지 않습니다.");
         return;
       }
-      await axios.post('http://localhost:8080/user-update', user);
+      await axios.post('http://localhost:8080/user-update', { ...user, password: newPassword });
       alert('회원 정보 수정 완료');
       navigate('/userinfo', { state: { userData: user } });
     } catch (error) {
@@ -65,20 +80,27 @@ function UpdateUser() {
   };
 
   const handleDelete = async () => {
-    const result = confirm('정말 회원정보를 삭제하시겠습니까? 삭제되면 복구가 불가능합니다.');
-    if (result) {
-      try {
-        const response = await axios.post('http://localhost:8080/delete-user', { userId: user.userId }, { withCredentials: true });
-        if (response.status === 200) {
-          alert("삭제가 완료되었습니다. 홈페이지로 돌아갑니다.");
-          navigate('/home');
-        } else {
-          console.error('삭제 실패:', response);
-        }
-      } catch (error) {
-        console.error('삭제 에러:', error);
+    setModalIsOpen(true);
+  };
+
+  const confirmDelete = async () => {
+    try {
+      const response = await axios.post('http://localhost:8080/delete-user', { userId: user.userId }, { withCredentials: true });
+      if (response.status === 200) {
+        alert("삭제가 완료되었습니다. 홈페이지로 돌아갑니다.");
+        navigate('/home');
+      } else {
+        console.error('삭제 실패:', response);
       }
+    } catch (error) {
+      console.error('삭제 에러:', error);
+    } finally {
+      setModalIsOpen(false);
     }
+  };
+
+  const closeModal = () => {
+    setModalIsOpen(false);
   };
 
   return (
@@ -97,13 +119,15 @@ function UpdateUser() {
           type="password"
           id="password"
           placeholder="비밀번호"
-          onChange={handleChange}
+          value={newPassword}
+          onChange={handlePasswordChange}
         />
         <input
           type="password"
           id="confirmPassword"
           placeholder="비밀번호 확인"
-          onChange={handleChange}
+          value={confirmPassword}
+          onChange={handleConfirmPasswordChange}
         />
         <input
           type="text"
@@ -130,6 +154,16 @@ function UpdateUser() {
         <button type="button" onClick={goToUserPage}>돌아가기</button>
         <button type="button" onClick={handleDelete}>삭제하기</button>
       </form>
+      <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        contentLabel="Confirm Delete"
+      >
+        <h2>회원정보 삭제</h2>
+        <p>정말 회원정보를 삭제하시겠습니까? 삭제되면 복구가 불가능합니다.</p>
+        <button onClick={confirmDelete}>예</button>
+        <button onClick={closeModal}>아니오</button>
+      </Modal>
     </div>
   );
 }

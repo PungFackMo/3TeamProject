@@ -17,7 +17,7 @@ function Main() {
                 <Route path="/login" element={<Login />} />
                 <Route path="/join" element={<Join />} />
                 <Route path="/userInfo" element={<UserInfo />} />
-                <Route path="/home" element={<Home />} />
+                <Route path="/" element={<Home />} />
                 <Route path="/user-update" element={<UpdateUser />} />
             </Routes>
         </Router>
