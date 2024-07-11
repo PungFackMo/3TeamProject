@@ -49,8 +49,8 @@ function ExamplesNavbar() {
           }}
         />
       ) : null}
-      <Navbar className={"fixed-top " + navbarColor} color="info" expand="lg">
-        <Container>
+      <nav className={"navbar fixed-top " + navbarColor + " navbar-expand-lg"}>
+        <div className="container">
           <UncontrolledDropdown className="button-dropdown">
             <DropdownToggle
               caret
@@ -65,38 +65,38 @@ function ExamplesNavbar() {
               <span className="button-bar"></span>
             </DropdownToggle>
             <DropdownMenu aria-labelledby="navbarDropdown">
-              <DropdownItem header tag="a">
-                Dropdown header
-              </DropdownItem>
-              <DropdownItem href="#pablo" onClick={(e) => e.preventDefault()}>
-                Action
-              </DropdownItem>
-              <DropdownItem href="#pablo" onClick={(e) => e.preventDefault()}>
-                Another action
-              </DropdownItem>
-              <DropdownItem href="#pablo" onClick={(e) => e.preventDefault()}>
-                Something else here
+              <DropdownItem href="/index">
+                Home
               </DropdownItem>
               <DropdownItem divider></DropdownItem>
-              <DropdownItem href="#pablo" onClick={(e) => e.preventDefault()}>
-                Separated link
+              <DropdownItem href="/login-page">
+                Login
               </DropdownItem>
               <DropdownItem divider></DropdownItem>
-              <DropdownItem href="#pablo" onClick={(e) => e.preventDefault()}>
-                One more separated link
+              <DropdownItem href="/">
+                게시판 페이지
+              </DropdownItem>
+              <DropdownItem href="/">
+                게시판 페이지
+              </DropdownItem>
+              <DropdownItem divider></DropdownItem>
+              <DropdownItem href="/">
+                공지사항
+              </DropdownItem>
+              <DropdownItem href="/">
+                문의사항
               </DropdownItem>
             </DropdownMenu>
           </UncontrolledDropdown>
           <div className="navbar-translate">
             <NavbarBrand
-              href="https://demos.creative-tim.com/now-ui-kit-react/index?ref=nukr-examples-navbar"
-              target="_blank"
+              href="/index"
               id="navbar-brand"
             >
-              Now Ui Kit
+              홈페이지 이름
             </NavbarBrand>
             <UncontrolledTooltip target="#navbar-brand">
-              Designed by Invision. Coded by Creative Tim
+              무더운 여름! <br/>시원한 일본으로 떠나봐요!
             </UncontrolledTooltip>
             <button
               className="navbar-toggler navbar-toggler"
@@ -119,22 +119,22 @@ function ExamplesNavbar() {
           >
             <Nav navbar>
               <NavItem>
-                <NavLink to="/index" tag={Link}>
-                  Back to Kit
+                <NavLink to="/" tag={Link}>
+                  메인 컨텐츠 이름
                 </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="https://github.com/creativetimofficial/now-ui-kit-react/issues?ref=creativetim">
-                  Have an issue?
+                <NavLink href="/">
+                  게시판 이름
                 </NavLink>
               </NavItem>
               <NavItem>
                 <NavLink
-                  href="https://twitter.com/CreativeTim?ref=creativetim"
+                  href="https://twitter.com"
                   target="_blank"
                   id="twitter-tooltip"
                 >
-                  <i className="fab fa-twitter"></i>
+                  <i className="fab bi-twitter"></i>
                   <p className="d-lg-none d-xl-none">Twitter</p>
                 </NavLink>
                 <UncontrolledTooltip target="#twitter-tooltip">
@@ -143,11 +143,11 @@ function ExamplesNavbar() {
               </NavItem>
               <NavItem>
                 <NavLink
-                  href="https://www.facebook.com/CreativeTim?ref=creativetim"
+                  href="https://www.facebook.com"
                   target="_blank"
                   id="facebook-tooltip"
                 >
-                  <i className="fab fa-facebook-square"></i>
+                  <i className="fab bi-facebook"></i>
                   <p className="d-lg-none d-xl-none">Facebook</p>
                 </NavLink>
                 <UncontrolledTooltip target="#facebook-tooltip">
@@ -156,11 +156,11 @@ function ExamplesNavbar() {
               </NavItem>
               <NavItem>
                 <NavLink
-                  href="https://www.instagram.com/CreativeTimOfficial?ref=creativetim"
+                  href="https://www.instagram.com"
                   target="_blank"
                   id="instagram-tooltip"
                 >
-                  <i className="fab fa-instagram"></i>
+                  <i className="fab bi-instagram"></i>
                   <p className="d-lg-none d-xl-none">Instagram</p>
                 </NavLink>
                 <UncontrolledTooltip target="#instagram-tooltip">
@@ -169,8 +169,8 @@ function ExamplesNavbar() {
               </NavItem>
             </Nav>
           </Collapse>
-        </Container>
-      </Navbar>
+        </div>
+      </nav>
     </>
   );
 }

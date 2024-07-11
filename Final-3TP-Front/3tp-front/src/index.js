@@ -10,6 +10,9 @@ import "./assets/demo/demo.css?v=1.5.0";
 // pages for this kit
 import Index from "./views/Index.js";
 import LoginPage from "./views/examples/LoginPage.js";
+import JoinPage from "./views/examples/JoinPage.js";
+import UpdateUserPage from "./views/examples/UpdateUserPage.js";
+import UserInfoPage from "./views/examples/UserInfoPage.js";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -18,6 +21,9 @@ root.render(
     <Routes>
       <Route path="/index" element={<Index />} />
       <Route path="/login-page" element={<LoginPage />} />
+      <Route path="/join" element={<JoinPage />} />
+      <Route path="/user-update" element={<UpdateUserPage />} />
+      <Route path="/user-info" element={<UserInfoPage />} />
 
       <Route path="*" element={<Navigate to="/index" replace />} />
     </Routes>
