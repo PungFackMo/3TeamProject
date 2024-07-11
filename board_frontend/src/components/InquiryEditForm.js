@@ -53,12 +53,6 @@ function InquiryEditForm() {
         required
         style={{ width: '100%', height: '200px' }}
       />
-      <input
-        type="text"
-        placeholder="Author"
-        value={author}
-        onChange={(e) => setAuthor(e.target.value)}
-      />
       <button type="submit">수정</button>
     </form>
   );
