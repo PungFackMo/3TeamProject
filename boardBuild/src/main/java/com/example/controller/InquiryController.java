@@ -19,6 +19,11 @@ public class InquiryController {
     public List<Inquiry> getAllInquiries() {
         return inquiryService.findAll();
     }
+    
+    @GetMapping("/recent")
+    public List<Inquiry> getTop5Inquiries() {
+    	return inquiryService.findTop5Inquiries();
+    }
 
     @GetMapping("/{id}")
     public Inquiry getInquiry(@PathVariable Long id) {
@@ -44,6 +49,5 @@ public class InquiryController {
     public void incrementViewCount(@PathVariable Long id) {
         inquiryService.incrementViewCount(id);
     }
+    
 }
-
-

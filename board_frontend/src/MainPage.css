@@ -25,11 +25,6 @@ button:hover {
   background-color: #0000cd; /* 진한 남색 (호버 상태) */
 }
 
-.table-container {
-  display: flex;
-  justify-content: space-between;
-}
-
 table {
   width: 100%;
   border-collapse: collapse;
@@ -98,12 +93,9 @@ input[type="email"] {
   border: 1px solid #ccc;
 }
 
+/* 추가된 CSS */
 .button-group {
   display: flex;
-  justify-content: flex-end; /* 오른쪽 정렬 */
-  margin-top: 20px;
-}
-
-.button-group button {
-  margin-left: 10px;
+  justify-content: flex-start; /* 버튼들을 왼쪽 정렬합니다. */
+  gap: 10px; /* 버튼 간격을 조절합니다. */
 }

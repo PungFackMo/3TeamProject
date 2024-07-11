@@ -20,6 +20,10 @@ public class NoticeService {
     public List<Notice> findAll() {
         return noticeRepository.findAll();
     }
+    
+    public List<Notice> findRecentNotices() {
+        return noticeRepository.findTop5ByOrderByCreatedAtDesc();
+    }
 
     public Notice findById(Long id) {
         return noticeRepository.findById(id)

@@ -26,6 +26,8 @@ public class Inquiry {
 
     @CreationTimestamp
     private LocalDateTime createdAt;
+
+    @UpdateTimestamp
     private LocalDateTime updatedAt;
 
     private int viewCount = 0;
@@ -35,4 +37,8 @@ public class Inquiry {
         createdAt = LocalDateTime.now();
     }
 
+    @PreUpdate
+    protected void onUpdate() {
+        updatedAt = LocalDateTime.now();
+    }
 }

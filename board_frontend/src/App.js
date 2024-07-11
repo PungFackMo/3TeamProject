@@ -9,6 +9,8 @@ import NoticeForm from './components/NoticeForm';
 import InquiryEditForm from './components/InquiryEditForm';
 import NoticeEditForm from './components/NoticeEditForm';
 
+import MainPage from './MainPage';
+
 function App() {
   return (
     <Router>
@@ -22,7 +24,7 @@ function App() {
         <Routes>
           <Route path="/inquiry/*" element={<InquiryRoutes />} />
           <Route path="/notice/*" element={<NoticeRoutes />} />
-          <Route path="/" element={<HomePage />} />
+          <Route path="/" element={<MainPage />} />
         </Routes>
       </div>
     </Router>
@@ -51,12 +53,45 @@ function NoticeRoutes() {
   );
 }
 
-function HomePage() {
-  return (
-    <div>
-      <p>홈페이지에 오신 것을 환영합니다</p>
-    </div>
-  );
-}
+// function HomePage() {
+//   return (
+//     <div>
+//       <p>홈페이지에 오신 것을 환영합니다</p>
+//     </div>
+//   );
+// }
 
 export default App;
+
+
+// import React from 'react';
+// import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+// import InquiryPage from './InquiryPage';
+// import InquiryDetail from './InquiryDetail';
+// import InquiryForm from './InquiryForm';
+// import InquiryEditForm from './InquiryEditForm';
+// import MainPage from './MainPage';
+// import NoticePage from './NoticePage'; // 새로운 NoticePage 컴포넌트 추가
+// import NoticeDetail from './NoticeDetail'; // 새로운 NoticeDetail 컴포넌트 추가
+// import NoticeForm from './NoticeForm'; // 새로운 NoticeForm 컴포넌트 추가
+// import NoticeEditForm from './NoticeEditForm'; // 새로운 NoticeEditForm 컴포넌트 추가
+
+// function App() {
+//     return (
+//         <Router>
+//             <Routes>
+//                 <Route path="/" element={<MainPage />} />
+//                 <Route path="/inquiry" element={<InquiryPage />} />
+//                 <Route path="/inquiry/new" element={<InquiryForm />} />
+//                 <Route path="/inquiry/:id" element={<InquiryDetail />} />
+//                 <Route path="/inquiry/:id/edit" element={<InquiryEditForm />} />
+//                 <Route path="/notice" element={<NoticePage />} /> {/* 새로운 경로 추가 */}
+//                 <Route path="/notice/new" element={<NoticeForm />} /> {/* 새로운 경로 추가 */}
+//                 <Route path="/notice/:id" element={<NoticeDetail />} /> {/* 새로운 경로 추가 */}
+//                 <Route path="/notice/:id/edit" element={<NoticeEditForm />} /> {/* 새로운 경로 추가 */}
+//             </Routes>
+//         </Router>
+//     );
+// }
+
+// export default App;

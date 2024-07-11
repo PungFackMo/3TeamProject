@@ -20,6 +20,11 @@ public class NoticeController {
     public List<Notice> getAllNotices() {
         return noticeService.findAll();
     }
+    
+    @GetMapping("/recent")
+    public List<Notice> getRecentNotices() {
+        return noticeService.findRecentNotices();
+    }
 
     @GetMapping("/{id}")
     public Notice getNotice(@PathVariable Long id) {
@@ -31,7 +36,6 @@ public class NoticeController {
         return noticeService.save(notice);
     }
 
-   
     @PutMapping("/{id}")
     public Notice updateNotice(@PathVariable Long id, @RequestBody Notice updatedNotice) {
         return noticeService.update(id, updatedNotice);
