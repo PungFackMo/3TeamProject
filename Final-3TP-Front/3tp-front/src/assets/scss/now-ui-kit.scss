@@ -1,0 +1,63 @@
+/*!
+
+ =========================================================
+ * Now UI Kit React - v1.5.2 based on Now UI Kit - v1.3.0
+ =========================================================
+
+ * Product Page: https://www.creative-tim.com/product/now-ui-kit-react
+ * Copyright 2023 Creative Tim (http://www.creative-tim.com)
+ * Licensed under MIT (https://github.com/creativetimofficial/now-ui-kit-react/blob/main/LICENSE.md)
+
+ * Designed by www.invisionapp.com Coded by www.creative-tim.com
+
+ =========================================================
+
+ * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+ */
+
+@import "../scss/now-ui-kit/variables";
+@import "../scss/now-ui-kit/mixins";
+
+// Plugins CSS
+@import "../scss/now-ui-kit/plugins/plugin-bootstrap-switch";
+@import "../scss/now-ui-kit/plugins/plugin-nouislider";
+@import "../scss/now-ui-kit/plugins/plugin-datepicker";
+
+// Core CSS
+@import "../scss/now-ui-kit/buttons";
+@import "../scss/now-ui-kit/inputs";
+@import "../scss/now-ui-kit/checkboxes-radio";
+@import "../scss/now-ui-kit/progress";
+@import "../scss/now-ui-kit/badges";
+@import "../scss/now-ui-kit/pagination";
+@import "../scss/now-ui-kit/typography";
+@import "../scss/now-ui-kit/misc";
+@import "../scss/now-ui-kit/pills";
+
+// components
+@import "../scss/now-ui-kit/nucleo-outline";
+
+@import "../scss/now-ui-kit/tabs";
+@import "../scss/now-ui-kit/navbar";
+@import "../scss/now-ui-kit/dropdown";
+@import "../scss/now-ui-kit/alerts";
+@import "../scss/now-ui-kit/images";
+@import "../scss/now-ui-kit/popups";
+@import "../scss/now-ui-kit/modals";
+@import "../scss/now-ui-kit/carousel";
+@import "../scss/now-ui-kit/footers";
+
+// Cards
+@import "../scss/now-ui-kit/cards";
+@import "../scss/now-ui-kit/cards/card-plain";
+@import "../scss/now-ui-kit/cards/card-signup";
+
+// example pages and sections
+@import "../scss/now-ui-kit/example-pages";
+@import "../scss/now-ui-kit/sections";
+
+@import "../scss/now-ui-kit/responsive";
+
+// React
+@import "../scss/react/react-differences";
