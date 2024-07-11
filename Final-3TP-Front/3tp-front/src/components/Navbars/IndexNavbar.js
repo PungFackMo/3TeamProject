@@ -63,8 +63,8 @@ function IndexNavbar() {
           }}
         />
       ) : null}
-      <Navbar className={"fixed-top " + navbarColor} expand="lg" style={{ backgroundColor: 'rgba(150, 150, 150, 0.5)' }}>
-        <Container>
+      <div className={"navbar fixed-top " + navbarColor + " navbar-expand-lg"} style={{ backgroundColor: 'rgba(150, 150, 150, 0.5)' }}>
+        <div className="container">
           <div className="navbar-translate">
             <NavbarBrand
               href="/"
@@ -196,8 +196,8 @@ function IndexNavbar() {
               </NavItem>
             </Nav>
           </Collapse>
-        </Container>
-      </Navbar>
+        </div>
+      </div>
     </>
   );
 }
