@@ -1,5 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link , BrowserRouter, Route, Routes, Navigate} from "react-router-dom";
+import DestinationPage from "components/DestinationPage";
+import Hotels from "components/Hotels";
 
 // reactstrap components
 import { Button, Container, Row, Col, UncontrolledTooltip } from "reactstrap";
@@ -17,26 +19,26 @@ function Download() {
         <Container>
           <Row className="justify-content-md-center">
             <Col className="text-center" lg="8" md="12">
-              <h3 className="title">여러가지 오사카의 매력 속으로 떠나보자!</h3>
+              <h3 className="title">역사적 명소에서부터 낭만적인 장소, 독특한 핫플레이스에 이르기까지 도쿄를 소개합니다.</h3>
               <h5 className="description">
-              일본 오사카는 일 년 내내 날씨가 좋아 언제 방문해도 좋은 여행지에요. 유니버설 스튜디오 재팬, 오사카 가이유칸 수족관 등 누구나 좋아하는 도시 명소부터 오사카 성, 도톤보리 등 깊은 역사를 지닌 곳들이 많아요. 오사카에서 꼭 가봐야 할 여행 명소와 계절별 여행 포인트를 알아보아요!
+              전 세계에서 가장 재미있는 도시 중 하나인 도쿄에서는 하루만에 현대와 과거의 매력을 느끼실 수 있습니다. 도쿄의 전통문화와 현대적이고 독창적인 분위기가 많은 사람들의 발길을 이끌죠. 도쿄에는 재미있는 관광명소가 많은데요. 비용이 많이 들지 않는 곳도 있습니다.
               </h5>
             </Col>
             <Col className="text-center" lg="12" md="12">
               <Button
                 className="btn-round mr-1"
                 color="info"
-                to="/"
+                to="/DestinationPage"
                 tag={Link}
                 role="button"
                 size="lg"
                 >
-                오사카 관광지 추천 받으러 가기
+                도쿄 관광지 추천 받으러 가기
               </Button>
               <Button
-                className="btn-round"
+                className="btn-round mr-1"
                 color="primary"
-                to="/"
+                to="/Hotels"
                 tag={Link}
                 outline
                 role="button"
@@ -57,7 +59,7 @@ function Download() {
               <Button
                 className="btn-round mr-1"
                 color="info"
-                to="/"
+                to="/DestinationPage"
                 tag={Link}
                 role="button"
                 size="lg"
@@ -67,7 +69,7 @@ function Download() {
               <Button
                 className="btn-round"
                 color="primary"
-                to="/"
+                to="/Hotels"
                 tag={Link}
                 outline
                 role="button"
@@ -79,26 +81,26 @@ function Download() {
           </Row>
           <Row className="justify-content-md-center">
             <Col className="text-center" lg="8" md="12">
-              <h3 className="title">여러가지 오사카의 매력 속으로 떠나보자!</h3>
+              <h3 className="title"> 일본 최북부, 낭만과 여행 장소로도 인기가 높은 홋카이도</h3>
               <h5 className="description">
-              일본 오사카는 일 년 내내 날씨가 좋아 언제 방문해도 좋은 여행지에요. 유니버설 스튜디오 재팬, 오사카 가이유칸 수족관 등 누구나 좋아하는 도시 명소부터 오사카 성, 도톤보리 등 깊은 역사를 지닌 곳들이 많아요. 오사카에서 꼭 가봐야 할 여행 명소와 계절별 여행 포인트를 알아보아요!
+                사람들로 가득 찬 관광지, 이러한 여행이 질려 조용하고 아름다운 자연 속에서 힐링 여행을 즐기고 싶을 때는 홋카이도가 제격이다. 일본 최북단에 위치하여 평균 기온이 20도 안팎으로 한국보다 선선한 날씨로 쾌적한 여행을 즐길 수 있기 때문이다. 게다가 일본 내에서도 자연환경이 아름답기로 소문난 지역이 많습니다.
               </h5>
             </Col>
             <Col className="text-center" lg="12" md="12">
               <Button
                 className="btn-round mr-1"
                 color="info"
-                to="/"
+                to="/DestinationPage"
                 tag={Link}
                 role="button"
                 size="lg"
                 >
-                오사카 관광지 추천 받으러 가기
+                홋카이도 관광지 추천 받으러 가기
               </Button>
               <Button
                 className="btn-round"
                 color="primary"
-                to="/"
+                to="/Hotels"
                 tag={Link}
                 outline
                 role="button"
