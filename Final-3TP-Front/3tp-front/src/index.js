@@ -13,6 +13,8 @@ import LoginPage from "./views/examples/LoginPage.js";
 import JoinPage from "./views/examples/JoinPage.js";
 import UpdateUserPage from "./views/examples/UpdateUserPage.js";
 import UserInfoPage from "./views/examples/UserInfoPage.js";
+import Hotels from "components/Hotels";
+import DestinationPage from "components/DestinationPage";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -24,6 +26,8 @@ root.render(
       <Route path="/join" element={<JoinPage />} />
       <Route path="/user-update" element={<UpdateUserPage />} />
       <Route path="/user-info" element={<UserInfoPage />} />
+      <Route path="/hotels" element={<Hotels />} />
+      <Route path="/destinationpage" element={<DestinationPage />} />
 
       <Route path="*" element={<Navigate to="/index" replace />} />
     </Routes>
