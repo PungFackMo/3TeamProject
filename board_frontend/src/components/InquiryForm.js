@@ -9,15 +9,15 @@ function InquiryForm() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // 로그인된 사용자 정보 가져오기
-    axios.get('http://localhost:8080/user')
+    axios.get('http://localhost:8080/user', { withCredentials: true })
       .then(response => {
         setAuthor(response.data.userId);
       })
       .catch(error => {
         console.error('사용자 정보를 가져오는 중 오류가 발생했습니다.', error);
+        navigate('/login'); // 로그인되지 않은 경우 로그인 페이지로 리다이렉트
       });
-  }, []);
+  }, [navigate]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -26,7 +26,8 @@ function InquiryForm() {
     axios.post('http://localhost:8080/api/inquiry', newInquiry, {
       headers: {
         'Content-Type': 'application/json'
-      }
+      },
+      withCredentials: true // 사용자 인증이 필요할 경우 추가
     })
       .then(response => {
         navigate('/inquiry');

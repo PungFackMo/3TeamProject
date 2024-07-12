@@ -19,17 +19,14 @@ public class Inquiry {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
-
+    
     @Lob
     private String content;
     private String author;
-
+    
     @CreationTimestamp
     private LocalDateTime createdAt;
-
-    @UpdateTimestamp
     private LocalDateTime updatedAt;
-
     private int viewCount = 0;
 
     @PrePersist
@@ -37,8 +34,4 @@ public class Inquiry {
         createdAt = LocalDateTime.now();
     }
 
-    @PreUpdate
-    protected void onUpdate() {
-        updatedAt = LocalDateTime.now();
-    }
 }
