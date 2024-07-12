@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 // reactstrap components
@@ -30,6 +30,13 @@ function LoginPage() {
     userId: '',
     password: ''
   });
+
+  const handleClick = (event) => {
+    // 입력란이 클릭되었을 때, setTimeout을 사용하여 입력란의 선택을 지연시킴
+    setTimeout(() => {
+      event.target.setSelectionRange(0, 0); // 입력란의 선택을 해제
+    }, 0);
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -110,6 +117,8 @@ function LoginPage() {
                       type="text"
                       name="userId"
                       value={user.userId}
+                      autoComplete="off"
+                      onClick={handleClick}
                       onChange={handleChange}
                       onFocus={() => setFirstFocus(true)}
                       onBlur={() => setFirstFocus(false)}

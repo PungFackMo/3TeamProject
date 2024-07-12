@@ -269,7 +269,7 @@ function Tabs() {
                 size="lg"
                 target="_blank"
               >
-                <i className="fab fa-twitter"></i>
+                <i className="fab bi-twitter"></i>
               </Button>
               <UncontrolledTooltip delay={0} target="tooltip86114138">
                 Follow us
@@ -282,7 +282,7 @@ function Tabs() {
                 size="lg"
                 target="_blank"
               >
-                <i className="fab fa-facebook-square"></i>
+                <i className="fab bi-facebook"></i>
               </Button>
               <UncontrolledTooltip delay={0} target="tooltip735272548">
                 Like us
@@ -295,7 +295,7 @@ function Tabs() {
                 size="lg"
                 target="_blank"
               >
-                <i className="fab fa-linkedin"></i>
+                <i className="fab bi-linkedin"></i>
               </Button>
               <UncontrolledTooltip delay={0} target="tooltip647117716">
                 Follow us
@@ -308,7 +308,7 @@ function Tabs() {
                 size="lg"
                 target="_blank"
               >
-                <i className="fab fa-github"></i>
+                <i className="fab bi-github"></i>
               </Button>
               <UncontrolledTooltip delay={0} target="tooltip331904895">
                 Star on Github

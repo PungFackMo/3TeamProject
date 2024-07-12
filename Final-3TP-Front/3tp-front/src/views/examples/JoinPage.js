@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 // reactstrap components
@@ -210,6 +209,7 @@ function JoinPage() {
                       placeholder="Password"
                       type="password"
                       id="password"
+                      minLength={8}
                       value={user.password}
                       onChange={handleChange}
                       onFocus={() => setSecondFocus(true)}

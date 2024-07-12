@@ -8,7 +8,6 @@ import {
   Card,
   CardHeader,
   CardBody,
-  CardFooter,
   Modal,
   ModalBody,
   Form,
@@ -24,17 +23,11 @@ import ExamplesNavbar from "../../components/Navbars/ExamplesNavbar.js";
 import TransparentFooter from "../../components/Footers/TransparentFooter.js";
 
 function UpdateUserPage() {
-  const [firstFocus, setFirstFocus] = useState(false);
   const [secondFocus, setSecondFocus] = useState(false);
   const [thirdFocus, setThirdFocus] = useState(false);
   const [fourthFocus, setFourthFocus] = useState(false);
   const [fifthFocus, setFifthFocus] = useState(false);
   const [sixthFocus, setSixthFocus] = useState(false);
-  const [errors, setErrors] = useState({});
-  const [userIdError, setUserIdError] = useState('');
-  const [phoneError, setPhoneError] = useState('');
-  const [userEmailError, setUserEmailError] = useState('');
-  const [passwordError, setPasswordError] = useState('');
 
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');

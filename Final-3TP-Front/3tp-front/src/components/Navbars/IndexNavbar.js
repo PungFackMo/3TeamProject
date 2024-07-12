@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Link } from "react-router-dom";
-import { BoxArrowInRight, Airplane } from 'react-bootstrap-icons';
+import { BoxArrowInRight, Airplane, BoxArrowInLeft, People } from 'react-bootstrap-icons';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 // reactstrap components
 import {
@@ -10,15 +12,73 @@ import {
   DropdownItem,
   UncontrolledDropdown,
   NavbarBrand,
-  Navbar,
   NavItem,
   NavLink,
   Nav,
-  Container,
   UncontrolledTooltip,
 } from "reactstrap";
 
 function IndexNavbar() {
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const [user, setUser] = useState({
+    userId: '',
+    password: '',
+    confirmPassword: '',
+    name: '',
+    phone: '',
+    userEmail: ''
+  });
+
+  useEffect(() => {
+    if (location.state && location.state.userData) {
+      setUser(location.state.userData);
+    }
+  }, [location.state]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        if (!user.userId) { // user 상태가 초기화되지 않았을 때만 API 호출
+          // console.log("상태가 초기화 되지 않았습니다.")
+          const response = await axios.get('http://localhost:8080/user', {
+            withCredentials: true, // 자격 증명(쿠키, 인증 헤더 등)을 포함하여 HTTP 요청
+          });
+          if (response.status === 200) {
+            // console.log("정상적으로 API에 요청하였습니다.")
+            setUser(response.data);
+          }
+        }
+      } catch (error) {
+        console.error('Error checking user status:', error);
+      }
+    };
+    fetchData();
+  }, [user.userId]);
+
+  const handleLogout = async () => {
+    try {
+      const response = await axios.post('http://localhost:8080/logout', {}, { withCredentials: true });
+      if (response.status === 200) {
+        setUser({
+          userId: '',
+          password: '',
+          confirmPassword: '',
+          name: '',
+          phone: '',
+          userEmail: ''
+        });
+        alert('로그아웃 완료');
+        navigate('/index');
+      } else {
+        console.error('로그아웃 실패:', response);
+      }
+    } catch (error) {
+      console.error('로그아웃 에러:', error);
+    }
+  };
+
   const [navbarColor, setNavbarColor] = React.useState("navbar-transparent");
   const [collapseOpen, setCollapseOpen] = React.useState(false);
 
@@ -81,6 +141,7 @@ function IndexNavbar() {
           >
             <Nav navbar>
               {/* @@@@@@@@@@@@@@@@@@@@ 로그인 @@@@@@@@@@@@@@@@@@@@ */}
+              {!user.userId && 
               <NavItem>
                 <NavLink
                   to="/login-page"
@@ -89,7 +150,27 @@ function IndexNavbar() {
                   <BoxArrowInRight size={20}/>&nbsp;&nbsp;&nbsp;
                   <p>Login</p>
                 </NavLink>
-              </NavItem>
+              </NavItem>}
+              {user.userId && 
+              <NavItem>
+                <NavLink
+                  onClick={handleLogout}
+                  style={{cursor: 'pointer'}}
+                >
+                  <BoxArrowInLeft size={20}/>&nbsp;&nbsp;&nbsp;
+                  <p>Logout</p>
+                </NavLink>
+              </NavItem>}
+              {user.userId && 
+              <NavItem>
+                <NavLink
+                  to="/user-info"
+                  tag={Link}
+                >
+                  <People size={20}/>&nbsp;&nbsp;&nbsp;
+                  <p>MyPage</p>
+                </NavLink>
+              </NavItem>}
               {/* @@@@@@@@@@@@@@@@@@@@ 로그인 @@@@@@@@@@@@@@@@@@@@ */}
 
               {/* @@@@@@@@@@@@@@@@@@@@ 메인 컨텐츠 @@@@@@@@@@@@@@@@@@@@ */}

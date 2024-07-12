@@ -1,5 +1,6 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { useLocation, useNavigate, Link } from 'react-router-dom';
 // reactstrap components
 import {
   Collapse,
@@ -8,15 +9,72 @@ import {
   DropdownItem,
   UncontrolledDropdown,
   NavbarBrand,
-  Navbar,
   NavItem,
   NavLink,
   Nav,
-  Container,
   UncontrolledTooltip,
 } from "reactstrap";
 
 function ExamplesNavbar() {
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const [user, setUser] = useState({
+    userId: '',
+    password: '',
+    confirmPassword: '',
+    name: '',
+    phone: '',
+    userEmail: ''
+  });
+
+  useEffect(() => {
+    if (location.state && location.state.userData) {
+      setUser(location.state.userData);
+    }
+  }, [location.state]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        if (!user.userId) { // user 상태가 초기화되지 않았을 때만 API 호출
+          // console.log("상태가 초기화 되지 않았습니다.")
+          const response = await axios.get('http://localhost:8080/user', {
+            withCredentials: true, // 자격 증명(쿠키, 인증 헤더 등)을 포함하여 HTTP 요청
+          });
+          if (response.status === 200) {
+            // console.log("정상적으로 API에 요청하였습니다.")
+            setUser(response.data);
+          }
+        }
+      } catch (error) {
+        console.error('Error checking user status:', error);
+      }
+    };
+    fetchData();
+  }, [user.userId]);
+
+  const handleLogout = async () => {
+    try {
+      const response = await axios.post('http://localhost:8080/logout', {}, { withCredentials: true });
+      if (response.status === 200) {
+        setUser({
+          userId: '',
+          password: '',
+          confirmPassword: '',
+          name: '',
+          phone: '',
+          userEmail: ''
+        });
+        alert('로그아웃 완료');
+        navigate('/index');
+      } else {
+        console.error('로그아웃 실패:', response);
+      }
+    } catch (error) {
+      console.error('로그아웃 에러:', error);
+    }
+  };
   const [navbarColor, setNavbarColor] = React.useState("navbar-transparent");
   const [collapseOpen, setCollapseOpen] = React.useState(false);
   React.useEffect(() => {
@@ -69,9 +127,18 @@ function ExamplesNavbar() {
                 Home
               </DropdownItem>
               <DropdownItem divider></DropdownItem>
+              {!user.userId &&
               <DropdownItem href="/login-page">
                 Login
-              </DropdownItem>
+              </DropdownItem>}
+              {user.userId &&
+              <DropdownItem onClick={handleLogout}>
+                Logout
+              </DropdownItem>}
+              {user.userId &&
+              <DropdownItem href="/user-info">
+                MyPage
+              </DropdownItem>}
               <DropdownItem divider></DropdownItem>
               <DropdownItem href="/">
                 게시판 페이지

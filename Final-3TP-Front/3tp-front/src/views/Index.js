@@ -15,7 +15,6 @@ import NucleoIcons from "./index-sections/NucleoIcons.js";
 import Download from "./index-sections/Download.js";
 
 
-
 function Index() {
   React.useEffect(() => {
     document.body.classList.add("index-page");
@@ -30,13 +29,13 @@ function Index() {
   });
   return (
     <>
-      <IndexNavbar />{/* 완 */}
+      <IndexNavbar />
       <div className="wrapper">
-        <IndexHeader />{/* 완 */}
+        <IndexHeader />
         <div className="main">
-          <NucleoIcons />{/* 완 */}
-          <Download />{/* 완 */}
-          <Tabs />{/* 완 */}
+          <NucleoIcons />
+          <Download />
+          <Tabs />
         </div>
         <DarkFooter />
       </div>

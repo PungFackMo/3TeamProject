@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 // reactstrap components
 import {
@@ -8,7 +8,6 @@ import {
   Card,
   CardHeader,
   CardBody,
-  CardFooter,
   Modal,
   ModalBody,
   Form,
@@ -24,20 +23,10 @@ import ExamplesNavbar from "../../components/Navbars/ExamplesNavbar.js";
 import TransparentFooter from "../../components/Footers/TransparentFooter.js";
 
 function UserInfoPage() {
-  const [firstFocus, setFirstFocus] = useState(false);
-  const [secondFocus, setSecondFocus] = useState(false);
-  const [thirdFocus, setThirdFocus] = useState(false);
   const [fourthFocus, setFourthFocus] = useState(false);
   const [fifthFocus, setFifthFocus] = useState(false);
   const [sixthFocus, setSixthFocus] = useState(false);
-  const [errors, setErrors] = useState({});
-  const [userIdError, setUserIdError] = useState('');
-  const [phoneError, setPhoneError] = useState('');
-  const [userEmailError, setUserEmailError] = useState('');
-  const [passwordError, setPasswordError] = useState('');
 
-  const [newPassword, setNewPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
   const [modal2, setModal2] = React.useState(false);
 
   const location = useLocation();
@@ -78,33 +67,6 @@ function UserInfoPage() {
     setUser({ ...user, [id]: value });
   };
 
-  const handlePasswordChange = (e) => {
-    setNewPassword(e.target.value);
-  };
-
-  const handleConfirmPasswordChange = (e) => {
-    setConfirmPassword(e.target.value);
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      if (!newPassword) {
-        alert("비밀번호를 입력해주세요.");
-        return;
-      }
-      if (newPassword !== confirmPassword) {
-        alert("비밀번호가 일치하지 않습니다.");
-        return;
-      }
-      await axios.post('http://localhost:8080/user-update', { ...user, password: newPassword });
-      alert('회원 정보 수정 완료');
-      navigate('/userinfo', { state: { userData: user } });
-    } catch (error) {
-      console.log('회원 정보 수정 에러: ' + error);
-      alert("회원정보를 확인해주세요. 비밀번호는 8자리 이상이어야 합니다.")
-    }
-  };
 
   const goToUserPage = () => {
     navigate('/userinfo', { state: { userData: user } });
@@ -148,9 +110,9 @@ function UserInfoPage() {
         ></div>
         <div className="content">
           <Container>
-            <Col className="ml-auto mr-auto" md="4" style={{marginTop: "-70px"}}>
+            <Col className="ml-auto mr-auto" md="4">
               <Card className="card-login card-plain">
-                <Form className="form" onSubmit={handleSubmit}>
+                <Form className="form">
                   <CardHeader className="text-center">
                     <div className="logo-container">
                       <img
@@ -220,48 +182,14 @@ function UserInfoPage() {
                       readOnly
                     />
                   </InputGroup>
-                  <InputGroup
-                    className={
-                      "no-border input-lg" + (secondFocus ? " input-group-focus" : "")
-                    }
-                  >
-                    <InputGroupText style={{borderRadius: "30px 0px 0px 30px"}}>
-                      <i className="now-ui-icons text_caps-small"></i>
-                    </InputGroupText>
-                    <Input
-                      placeholder="Password"
-                      type="password"
-                      id="password"
-                      alue={newPassword}
-                      onChange={handlePasswordChange}
-                      onFocus={() => setSecondFocus(true)}
-                      onBlur={() => setSecondFocus(false)}
-                    />
-                  </InputGroup>
-                  <InputGroup
-                    className={
-                      "no-border input-lg" + (thirdFocus ? " input-group-focus" : "")
-                    }
-                  >
-                    <InputGroupText style={{borderRadius: "30px 0px 0px 30px"}}>
-                      <i className="now-ui-icons text_caps-small"></i>
-                    </InputGroupText>
-                    <Input
-                      placeholder="Confirm Password"
-                      type="password"
-                      id="confirmPassword"
-                      value={confirmPassword}
-                      onChange={handleConfirmPasswordChange}
-                      onFocus={() => setThirdFocus(true)}
-                      onBlur={() => setThirdFocus(false)}
-                    />
-                  </InputGroup>
                     <Button
                       block
-                      type="submit"
+                      type="button"
                       className="btn-round"
                       color="info"
                       size="lg"
+                      to="/user-update"
+                      tag={Link}
                     >
                       update
                     </Button>
