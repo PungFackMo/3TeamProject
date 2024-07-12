@@ -1,13 +1,10 @@
 import React from 'react';
-import './Hotels.css'
+import '../assets/css/Hotels.css'
 
 
 const Hotels = () => {
 
 const hotels = [
-  {
-  title: '도쿄 추천 호텔'
-  },
   {
     name: '나리타 게이트웨이 호텔 (Narita Gateway Hotel)',
     location: '658 Oyama, Narita City, Chiba Pref., 나리타 국제공항, 나리타, 일본, 286-0131',
@@ -134,8 +131,6 @@ const hotels = [
     image: 'img/롯폰기3.jpg'
     ,title: '롯폰기 주변 추천 호텔' 
   },
-    {title:'오사카 추천 호텔'
-    },
   {
     name: '소테츠 그랜드 프레사 오사카 난바 (Sotetsu Grand Fresa Osaka Namba)',
     location: '1-1-13, Nippombashi, Chuo-ku, 난바, 오사카, 일본, 542-0073 ',
@@ -198,9 +193,6 @@ const hotels = [
     description: '모든 객실 내 무료 Wi-Fi이/가 제공되는 이 숙소에서 즐거운 여행을 시작하세요. 신사이바시에 위치해 있어 현지 명소 및 관광지와 인접해 있습니다. 떠나기 전 유명한 도톤보리을/를 방문해 보세요. 본 3.5성급 숙소는 보다 훌륭하고 기억에 남는 숙박을 제공하기 위해 레스토랑을/를 갖추고 있습니다.',
     image: 'img/신사이바시3.jpg'
     ,title: '신사이바시 주변 추천 호텔' 
-  },
-  {title:'홋카이도 추천 호텔'
-
   },
   {
     name: '미츠이 가든 호텔 삿포로 (Mitsui Garden Hotel Sapporo)',

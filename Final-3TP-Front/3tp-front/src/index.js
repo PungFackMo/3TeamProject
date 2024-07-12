@@ -15,6 +15,7 @@ import UpdateUserPage from "./views/examples/UpdateUserPage.js";
 import UserInfoPage from "./views/examples/UserInfoPage.js";
 import Hotels from "components/Hotels";
 import DestinationPage from "components/DestinationPage";
+import Typography from "views/index-sections/Typography";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -28,6 +29,7 @@ root.render(
       <Route path="/user-info" element={<UserInfoPage />} />
       <Route path="/hotels" element={<Hotels />} />
       <Route path="/destinationpage" element={<DestinationPage />} />
+      <Route path="/typography" element={<Typography />} />
 
       <Route path="*" element={<Navigate to="/index" replace />} />
     </Routes>

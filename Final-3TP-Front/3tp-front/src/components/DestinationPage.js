@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './DestinationPage.css';
+import '../assets/css/DestinationPage.css';
 
 const DestinationPage = () => {
   // 도쿄 지역 정보 배열
