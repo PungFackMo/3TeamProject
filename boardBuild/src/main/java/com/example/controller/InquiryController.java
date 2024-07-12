@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import com.example.entity.Comment;
 import com.example.entity.Inquiry;
 import com.example.service.InquiryService;
 
@@ -48,6 +49,18 @@ public class InquiryController {
     @PutMapping("/increment-view/{id}")
     public void incrementViewCount(@PathVariable Long id) {
         inquiryService.incrementViewCount(id);
+    }
+    
+    @GetMapping("/{id}/comments")
+    public List<Comment> getCommentsByInquiryId(@PathVariable Long id) {
+        Inquiry inquiry = inquiryService.findById(id);
+        return inquiry.getComments();
+    }
+
+    
+    @PostMapping("/{id}/comments")
+    public Comment addComment(@PathVariable Long id, @RequestBody Comment comment) {
+        return inquiryService.addComment(id, comment);
     }
     
 }

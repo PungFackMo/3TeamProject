@@ -8,6 +8,8 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
@@ -19,6 +21,10 @@ public class Inquiry {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
+    
+    @OneToMany(mappedBy = "inquiry", cascade = CascadeType.ALL)
+    @OrderBy("createdAt DESC")
+    private List<Comment> comments = new ArrayList<>();
     
     @Lob
     private String content;
