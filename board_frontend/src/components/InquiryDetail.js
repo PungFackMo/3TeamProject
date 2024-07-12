@@ -27,20 +27,24 @@ function InquiryDetail() {
       try {
         // 문의 정보 가져오기
         const response = await axios.get(`http://localhost:8080/api/inquiry/${id}`);
+        console.log('Inquiry data:', response.data);
         setInquiry(response.data);
-        setAuthor(response.data.author);
-
+        setAuthor(response.data.author); // 작성자 설정
+  
         // 현재 사용자 정보 가져오기
         const userResponse = await axios.get('http://localhost:8080/user', { withCredentials: true });
+        console.log('Current user:', userResponse.data);
         setCurrentUser(userResponse.data.userId);
-
+  
         // 댓글 목록 가져오기
-        fetchComments();
+        const commentsResponse = await axios.get(`http://localhost:8080/api/inquiry/${id}/comments`);
+        console.log('Comments:', commentsResponse.data);
+        setComments(commentsResponse.data);
       } catch (error) {
-        console.error('문의 정보를 불러오는 중 오류가 발생했습니다!', error);
+        console.error('Error fetching data:', error);
       }
     };
-
+  
     fetchData();
   }, [id]);
 
@@ -118,7 +122,6 @@ function InquiryDetail() {
         {comments.map(comment => (
           <div key={comment.id}>
             <p>{comment.text}</p>
-            <small>{comment.author} - {new Date(comment.createdAt).toLocaleString()}</small>
           </div>
         ))}
       </div>
