@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import '../assets/css/DestinationPage.css';
 
 const DestinationPage = () => {
-  // 도쿄 지역 정보 배열
-  const tokyoDestinations = [
+  // 모든 지역 정보 배열
+  const allDestinations = [
     {
       name: '도쿄 스카이트리',
       location: '1 Chome-1-2, Oshiage, Sumida, Tokyo, Japan',
@@ -40,7 +40,6 @@ const DestinationPage = () => {
       description: '도쿄 디즈니랜드는 미국 외 지역에 지어진 최초의 디즈니랜드로, 1983년에 문을 열었어요. 여전히 가족, 연인, 모든 연령대의 사람들에게 큰 사랑을 받고 있는데요. 이곳은 6개 구역인 어드벤처랜드, 웨스턴랜드, 크리터 컨트리, 판타지랜드, 툰타운, 투 모로우랜드로 나뉘어 있죠.',
       image: 'img/디즈니랜드.jpg',
     },
-
     {
       name: '시부야 스카이',
       location: '도쿄도 시부야구 시부야 니쵸메 24번 12호',
@@ -53,10 +52,6 @@ const DestinationPage = () => {
       description: '오다이바에는 일본에서 가장 큰 대관람차로 오바이바 전경을 볼 수 있는 팔레트 타운 쇼핑몰 옥상의 대관람차와 일본의 에도 시대의 서민 온천을 재현한 공간으로 유카타 체험도 해볼 수 있는 오오에도 온천 그리고 자유의 여신상이 있는 오바이바 해변공원까지 하루를 투자해도 모자를 정도로 재미난 곳들이 많아요.',
       image: 'img/오다이바.jpg',
     },
-  ];
-
-  // 오사카 지역 정보 배열
-  const osakaDestinations = [
     {
       name: '오사카 성',
       location: '오사카부 오사카시 추오구 오사카조 1-1(〒540-0002)',
@@ -70,55 +65,41 @@ const DestinationPage = () => {
       image: 'img/도톤보리.jpg',
     },
     {
-      name:'유니버셜 스튜디오 재팬',
-      location:'오사카부 오사카시 고노하나구 사쿠라지마 2초메 1-33(〒554-0031)',
+      name: '유니버셜 스튜디오 재팬',
+      location: '오사카부 오사카시 고노하나구 사쿠라지마 2초메 1-33(〒554-0031)',
       description: '유니버설 스튜디오 재팬은 가족, 특히 어린아이들에게 큰 사랑을 받는 곳이에요. 스누피, 슈렉, 뽀빠이와 같은 유명한 캐릭터와 인사도 나누고 유명한 영화를 테마로 한 많은 재미있는 놀이기구도 탈 수 있죠. 그중에서 쥬라기 공원, 죠스, 스파이더 맨 테마의 놀이기구가 가장 인기가 높아요.',
       image: 'img/유니버셜.jpg',
     },
     {
-      name:'덴포잔 대관람차',
-      location:' 오사카부 오사카시 미나토구 카이간도리 1초메 1-10(〒052-0022)',
+      name: '덴포잔 대관람차',
+      location: ' 오사카부 오사카시 미나토구 카이간도리 1초메 1-10(〒052-0022)',
       description: '덴포잔 대관람차는 오사카 가이유칸 수족관과 동일한 회사가 운영하는 놀이기구예요. 덴포잔 하버 빌리지 근처에 자리해 있죠. 높이는 112.5m로, 한 바퀴를 모두 도는 데 약 15분이 걸립니다. 8명씩 탈 수 있는 캐빈 60개로 구성되어 있으며 휠체어를 탄 채로 이용할 수도 있어요, 덴포잔 대관람차를 타면 동쪽 이코마산, 서쪽 아카시 해협 대교, 남쪽 간사이 국제공항, 북쪽 롯코산맥 등 오사카만과 그 주변을 한눈에 조망할 수 있습니다.',
       image: 'img/덴포잔.jpg',
-
-
     },
     {
-      name:'우메다 스카이 빌딩 공중정원 전망대',
-      location:'오사카부 오사카시 기타구 오요도나카 1초메 1-8 7(〒531-6023)',
-      description: '우메다 빌딩의 쌍둥이 타워 사이에 자리해 초현대적인 디자인을 자랑하는 공중정원 전망대에서는 멋진 도시 전경을 감상할 수 있어요. 39층에 있어 높이가 170m에 달하는 전망대에 서 있는 것만으로도 특별한 체험을 했다고 느낄 수 있는데요. 엘리베이터와 에스컬레이터도 전면이 투명해 전망대로 올라가면서 주변 경치를 360도로 조망할 수 있죠. ',
+      name: '우메다 스카이 빌딩 공중정원 전망대',
+      location: '오사카부 오사카시 기타구 오요도나카 1초메 1-8 7(〒531-6023)',
+      description: '우메다 빌딩의 쌍둥이 타워 사이에 자리해 초현대적인 디자인을 자랑하는 공중정원 전망대에서는 멋진 도시 전경을 감상할 수 있어요. 39층에 있어 높이가 170m에 달하는 전망대에 서 있는 것만으로도 특별한 체험을 했다고 느낄 수 있는데요. 엘리베이터와 에스컬레이터도 전면이 투명해 전망대로 올라가면서 주변 경치를 360도로 조망할 수 있죠.',
       image: 'img/우메다전망대.jpg',
-
-
     },
     {
-      name:'오사카 가이유칸 수족관',
-      location:'오사카부 오사카시 미나토구 카이간도리 1초메 1-10(〒552-0022)',
+      name: '오사카 가이유칸 수족관',
+      location: '오사카부 오사카시 미나토구 카이간도리 1초메 1-10(〒552-0022)',
       description: '오사카 가이유칸 수족관은 세계에서 가장 큰 수족관 중 하나입니다. 고래상어, 바다사자와 펭귄, 해파리, 해달, 거북, 쥐가오리, 키다리게, 잔점박이 물범, 열대 암초까지 다양한 해양 생물을 만나보실 수 있어요. 수족관 탱크는 아크릴 유리판으로 제작되어 유유히 헤엄치는 해양 생물들과 함께 바다속에 있는 듯한 느낌이 들죠. 영어, 중국어, 한국어를 지원하는 오디오 가이드를 대여하실 수 있습니다. 사람이 많아 혼잡할 수 있으니 공휴일이나 주말을 피해 방문하는 걸 추천해 드려요.',
       image: 'img/가이유칸수족관.jpg',
-
-
     },
     {
-      name:'시텐노지',
-      location:'오사카부 오사카시 덴노지구 신텐노지(〒543-0051)',
+      name: '시텐노지',
+      location: '오사카부 오사카시 덴노지구 신텐노지(〒543-0051)',
       description: '일본에서 가장 오래된 사찰인 시텐노지는 오사카의 종교를 이야기할 때 빠지지 않는 곳이에요. 일본에 불교를 들여왔다고 알려진 쇼토쿠 태자가 593년에 세운 절인데요. 시대를 거치면서 나무로 지어진 시텐노지의 건물은 전쟁과 화재로 피해를 입었지만 그때마다 주민들이 정성을 들여 원래의 모습으로 복원했습니다. 가장 인기 있는 볼거리인 시텐노지의 정문과 5층짜리 불탑, 금당을 확인해 보세요.',
       image: 'img/시텐노지.jpg',
-
-
     },
     {
-      name:'텐노지 동물원',
-      location:'1-108 Chausuyamacho, Tennoji Ward, Osaka 543-0063, Japan',
+      name: '텐노지 동물원',
+      location: '1-108 Chausuyamacho, Tennoji Ward, Osaka 543-0063, Japan',
       description: '1915년에 설립된 덴노지 동물원에는 200종의 동물 1,000여 마리가 살고 있어요. 110,000제곱미터 규모의 이 공원에는 전 세계의 자연 환경을 재현한 야생 동물 보호 구역이 있어요. 공원은 4개의 구역으로 구성되어 있고 펭귄, 기린, 코끼리 등 각 지역의 동물을 볼 수 있어요.',
       image: 'img/텐노지동물원.jpg',
-
-
     },
-  ];
-
-  // 홋카이도 지역 정보 배열
-  const hokkaidoDestinations = [
     {
       name: '유노카와 온천',
       location: '北海道函館市湯川町',
@@ -167,11 +148,7 @@ const DestinationPage = () => {
       description: '삿포로 시내 풍경을 한눈에 내려다 볼 수 있는, 삿포로 JR타워 38층에 자리한 전망시설이다. 삿포로 시내의 야경을 감상할 수 있는 저녁 시간에 특히 인기가 많은 곳으로, 전망대 내에 카페와 기념품 숍도 입점하고 있어 편리하게 이용할 수 있다.',
       image: 'img/타워전망대.jpg',
     },
-    
   ];
-
-  // 모든 지역 정보 배열
-  const allDestinations = [...tokyoDestinations, ...osakaDestinations, ...hokkaidoDestinations];
 
   // 선택된 지역의 정보를 저장할 상태 변수
   const [selectedDestination, setSelectedDestination] = useState(null);
@@ -181,21 +158,13 @@ const DestinationPage = () => {
     handleRandomRecommendation();
   }, []);
 
-  // 지역 선택 이벤트 핸들러
-  const handleSelectDestination = (destinations) => {
-    const randomIndex = Math.floor(Math.random() * destinations.length);
-    setSelectedDestination(destinations[randomIndex]);
-  };
-
   // 랜덤으로 지역을 선택하는 함수
   const handleRandomRecommendation = () => {
-    const destinations = allDestinations;
     let randomIndex;
     do {
-      randomIndex = Math.floor(Math.random() * destinations.length);
-    } while (destinations[randomIndex] === selectedDestination); // 현재 선택된 지역과 겹치지 않도록
-
-    setSelectedDestination(destinations[randomIndex]);
+      randomIndex = Math.floor(Math.random() * allDestinations.length);
+    } while (allDestinations[randomIndex] === selectedDestination); // 현재 선택된 지역과 겹치지 않도록
+    setSelectedDestination(allDestinations[randomIndex]);
   };
 
   return (
@@ -204,17 +173,9 @@ const DestinationPage = () => {
         <h1>일본 여행명소 추천</h1>
       </header>
       <main className="App-main">
-        <div className="button-container">
-          <button className="random-button" onClick={() => handleSelectDestination(tokyoDestinations)}>
-            도쿄
-          </button>
-          <button className="random-button" onClick={() => handleSelectDestination(osakaDestinations)}>
-            오사카
-          </button>
-          <button className="random-button" onClick={() => handleSelectDestination(hokkaidoDestinations)}>
-            홋카이도
-          </button>
-        </div>
+        <button className="random-button" onClick={handleRandomRecommendation}>
+          랜덤명소 추천
+        </button>
         {selectedDestination && (
           <div className="destination-container">
             <div className="destination">
@@ -225,9 +186,6 @@ const DestinationPage = () => {
             </div>
           </div>
         )}
-        <button className="random-button" onClick={handleRandomRecommendation}>
-          전체 랜덤명소 추천
-        </button>
       </main>
     </div>
   );
