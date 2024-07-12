@@ -1,11 +1,8 @@
-import React from 'react';
-import '../assets/css/Hotels.css'
+import React, { useState, useEffect } from 'react';
 
 
 const Hotels = () => {
-
-const hotels = [
-  {
+  const tokyoHotels = [ {
     name: '나리타 게이트웨이 호텔 (Narita Gateway Hotel)',
     location: '658 Oyama, Narita City, Chiba Pref., 나리타 국제공항, 나리타, 일본, 286-0131',
     description: '모든 객실 내 무료 Wi-Fi이/가 제공되는 이 숙소에서 즐거운 여행을 시작하세요. 나리타의 나리타 국제공항에 위치한 본 숙소는 관광 명소 및 흥미로운 레스토랑과 가깝습니다. 떠나기 전 유명한 나리타산 신쇼지을/를 방문해 보세요. 별 3개를 받은 본 고급 숙소는 투숙객에게 숙소 내 레스토랑, 피트니스 센터 및 마사지을/를 제공합니다.모든 객실 내 무료 Wi-Fi이/가 제공되는 이 숙소에서 즐거운 여행을 시작하세요. 나리타의 나리타 국제공항에 위치한 본 숙소는 관광 명소 및 흥미로운 레스토랑과 가깝습니다. 떠나기 전 유명한 나리타산 신쇼지을/를 방문해 보세요. 별 3개를 받은 본 고급 숙소는 투숙객에게 숙소 내 레스토랑, 피트니스 센터 및 마사지을/를 제공합니다.',
@@ -130,8 +127,8 @@ const hotels = [
     description: '모든 객실 내 무료 Wi-Fi이/가 제공되는 이 숙소에서 즐거운 여행을 시작하세요. 롯폰기에 위치해 있어 현지 명소 및 관광지와 인접해 있습니다. 떠나기 전 유명한 센소지 사원을/를 방문해 보세요. 본 3성급 숙소는 보다 훌륭하고 기억에 남는 숙박을 제공하기 위해 레스토랑을/를 갖추고 있습니다.',
     image: 'img/롯폰기3.jpg'
     ,title: '롯폰기 주변 추천 호텔' 
-  },
-  {
+  },];
+  const osakaHotels = [ {
     name: '소테츠 그랜드 프레사 오사카 난바 (Sotetsu Grand Fresa Osaka Namba)',
     location: '1-1-13, Nippombashi, Chuo-ku, 난바, 오사카, 일본, 542-0073 ',
     description: '모든 객실 내 무료 Wi-Fi이/가 제공되는 이 숙소에서 즐거운 여행을 시작하세요. 난바에 위치해 있어 현지 명소 및 관광지와 인접해 있습니다. 떠나기 전 유명한 도톤보리을/를 방문해 보세요. 본 3.5성급 숙소는 보다 훌륭하고 기억에 남는 숙박을 제공하기 위해 레스토랑을/를 갖추고 있습니다.',
@@ -191,10 +188,10 @@ const hotels = [
     name: '하톤 호텔 신사이바시 (Hearton Hotel Shinsaibashi)',
     location: 'Nishi Shinsaibashi, 1-5-24, Chuo Ku, 신사이바시, 오사카, 일본, 542-0086',
     description: '모든 객실 내 무료 Wi-Fi이/가 제공되는 이 숙소에서 즐거운 여행을 시작하세요. 신사이바시에 위치해 있어 현지 명소 및 관광지와 인접해 있습니다. 떠나기 전 유명한 도톤보리을/를 방문해 보세요. 본 3.5성급 숙소는 보다 훌륭하고 기억에 남는 숙박을 제공하기 위해 레스토랑을/를 갖추고 있습니다.',
-    image: 'img/신사이바시3.jpg'
-    ,title: '신사이바시 주변 추천 호텔' 
-  },
-  {
+    image: 'img/신사이바시3.jpg',
+    title: '신사이바시 주변 추천 호텔' ,
+  },];
+  const hokkaidoHotels = [ {
     name: '미츠이 가든 호텔 삿포로 (Mitsui Garden Hotel Sapporo)',
     location: '6-18-3 Kitagojo-nishi, Chuo-ku, 삿포로, 삿포로, 일본, 060-0005',
     description: '모든 객실 내 무료 Wi-Fi이/가 제공되는 이 숙소에서 즐거운 여행을 시작하세요. 삿포로에 위치해 있어 현지 명소 및 관광지와 인접해 있습니다. 떠나기 전 유명한 오도리 파크을/를 방문해 보세요. 별 4개를 받은 본 고급 숙소는 투숙객에게 숙소 내 스파 및 마사지을/를 제공합니다.',
@@ -277,85 +274,235 @@ const hotels = [
   },
 ];
 
+  const [showTokyo, setShowTokyo] = useState(false);
+  const [showOsaka, setShowOsaka] = useState(false);
+  const [showHokkaido, setShowHokkaido] = useState(false);
+  const [hotels, setHotels] = useState([]);
 
+  const toggleTokyo = () => {
+    setShowTokyo(!showTokyo);
+    setShowOsaka(false);
+    setShowHokkaido(false);
+  };
 
+  const toggleOsaka = () => {
+    setShowOsaka(!showOsaka);
+    setShowTokyo(false);
+    setShowHokkaido(false);
+  };
 
- // 중복되지 않은 호텔 제목(title)들을 저장할 Set
- const uniqueTitles = new Set();
+  const toggleHokkaido = () => {
+    setShowHokkaido(!showHokkaido);
+    setShowTokyo(false);
+    setShowOsaka(false);
+  };
 
- // 호텔 섹션으로 스크롤 이동하는 함수
- const scrollToAccommodation = (index) => {
-   const accommodationRef = document.getElementById(`accommodation-${index}`);
-   if (accommodationRef) {
-     accommodationRef.scrollIntoView({ behavior: 'smooth' });
-   }
- };
+  const uniqueTitles = new Set();
 
- // 중복되지 않은 제목(title) 버튼들을 생성하는 함수
- const renderUniqueTitleButtons = () => {
-   return hotels.map((hotel, index) => {
-     if (!uniqueTitles.has(hotel.title)) {
-       uniqueTitles.add(hotel.title); // Set에 제목(title) 추가
-       return (
-         <button
-           key={index}
-           className="fixed-button"
-           onClick={() => scrollToAccommodation(index)}
-         >
-           {hotel.title}
-         </button>
-       );
-     }
-     return null; // 중복되는 제목(title)은 버튼을 생성하지 않음
-   });
- };
+  const scrollToAccommodation = (index, region) => {
+    let startIndex = 0;
+    if (region === 'tokyo') {
+      startIndex = 0;
+    } else if (region === 'osaka') {
+      startIndex = tokyoHotels.length;
+    } else if (region === 'hokkaido') {
+      startIndex = tokyoHotels.length + osakaHotels.length;
+    }
+    const realIndex = startIndex + index;
+    const accommodationRef = document.getElementById(`accommodation-${realIndex}`);
+    if (accommodationRef) {
+      accommodationRef.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
- const handleRandomRecommendation = () => {
-   const randomIndex = Math.floor(Math.random() * hotels.length);
-   scrollToAccommodation(randomIndex);
- };
+  const renderUniqueTitleButtons = (hotels, region) => {
+    return hotels.map((hotel, index) => {
+      if (!uniqueTitles.has(hotel.title)) {
+        uniqueTitles.add(hotel.title);
+        return (
+          <button
+            key={index}
+            className="fixed-button"
+            style={{
+              display: 'block',
+              width: '100%',
+              height: '70px', // 버튼 세로 사이즈 늘리기
+              marginBottom: '20px', // 간격 줄이기
+              padding: '15px', // 내부 패딩 늘리기
+              backgroundColor: '#4CAF50',
+              color: 'white',
+              border: '1px solid #ccc', // 테두리 추가
+              borderRadius: '5px', // 둥근 테두리
+              cursor: 'pointer'
+            }}
+            onClick={() => scrollToAccommodation(index, region)}
+          >
+            {hotel.title}
+          </button>
+        );
+      }
+      return null;
+    });
+  };
 
- const Accommodation = ({ hotel, title }) => {
-   return (
-     <div className="accommodation">
-       <h3>{title}</h3>
-       {hotel.image && (
-         <img 
-           src={process.env.PUBLIC_URL + '/' + hotel.image} 
-           alt={`${hotel.name} 이미지`} 
-           className="accommodation-image"
-         />
-       )}
-       <div className="accommodation-details">
-         <h3>{hotel.name}</h3>
-         <h4>{hotel.location}</h4>
-         <p>{hotel.description}</p>
-       </div>
-     </div>
-   );
- };
+  const handleRandomRecommendation = () => {
+    const randomIndex = Math.floor(Math.random() * hotels.length);
+    scrollToAccommodation(randomIndex, 'all');
+  };
 
- return (
-   <div>
-     <main className="App-main">
-       <div className="accommodation-list">
-         {hotels.map((hotel, index) => (
-           <div key={index} id={`accommodation-${index}`} className="accommodation-item">
-             <Accommodation hotel={hotel} title={hotel.title} />
-           </div>
-         ))}
-       </div>
-     </main>
+  const Accommodation = ({ hotel, index }) => {
+    return (
+      <div
+        className="accommodation"
+        id={`accommodation-${index}`}
+        style={{
+          marginBottom: '20px',
+          padding: '20px',
+          backgroundColor: '#fff',
+          border: '1px solid #ddd',
+          width: '100%',
+          boxSizing: 'border-box',
+          maxWidth: '1000px'
+        }}
+      >
+        {hotel.image && (
+          <img
+            src={process.env.PUBLIC_URL + '/' + hotel.image}
+            alt={`${hotel.name} 이미지`}
+            style={{ width: '100%', height: 'auto' }}
+          />
+        )}
+        <div className="accommodation-details" style={{ marginTop: '20px' }}>
+          <h3 style={{ marginBottom: '5px' }}>{hotel.name}</h3>
+          <h4 style={{ marginBottom: '5px' }}>{hotel.location}</h4>
+          <p style={{ marginBottom: '5px' }}>{hotel.description}</p>
+        </div>
+      </div>
+    );
+  };
 
-     <div className="fixed-button-container">
-       {renderUniqueTitleButtons()}
-       <button className="fixed-button" onClick={handleRandomRecommendation}>
-         랜덤 호텔 추천
-       </button>
-     </div>
-   </div>
- );
+  useEffect(() => {
+    setHotels([...tokyoHotels, ...osakaHotels, ...hokkaidoHotels]);
+  }, [tokyoHotels, osakaHotels, hokkaidoHotels]);
+
+  return (
+    <div className="HotelsPage" style={{ display: 'flex' }}>
+      <div
+        className="button-container"
+        style={{
+          position: 'fixed',
+          left: 0,
+          top: 0,
+          width: '400px',
+          padding: '20px',
+          backgroundColor: '#f8f8f8',
+          borderRight: '1px solid #ddd',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'flex-start',
+          marginBottom: '20px'
+        }}
+      >
+        <button
+          className="toggle-button"
+          style={{
+            display: 'block',
+            width: '100%',
+            height: '70px',
+            marginBottom: '20px',
+            padding: '15px',
+            backgroundColor: '#00BFFF',
+            color: 'white',
+            border: '1px solid #ccc',
+            borderRadius: '5px',
+            cursor: 'pointer'
+          }}
+          onClick={toggleTokyo}
+        >
+          도쿄
+        </button>
+        {showTokyo && (
+          <div className="hotel-buttons">
+            {renderUniqueTitleButtons(tokyoHotels, 'tokyo')}
+          </div>
+        )}
+        <button
+          className="toggle-button"
+          style={{
+            display: 'block',
+            width: '100%',
+            height: '70px',
+            marginBottom: '20px',
+            padding: '15px',
+            backgroundColor: '#00BFFF',
+            color: 'white',
+            border: '1px solid #ccc',
+            borderRadius: '5px',
+            cursor: 'pointer'
+          }}
+          onClick={toggleOsaka}
+        >
+          오사카
+        </button>
+        {showOsaka && (
+          <div className="hotel-buttons">
+            {renderUniqueTitleButtons(osakaHotels, 'osaka')}
+          </div>
+        )}
+        <button
+          className="toggle-button"
+          style={{
+            display: 'block',
+            width: '100%',
+            height: '70px',
+            marginBottom: '20px',
+            padding: '15px',
+            backgroundColor: '#00BFFF',
+            color: 'white',
+            border: '1px solid #ccc',
+            borderRadius: '5px',
+            cursor: 'pointer'
+          }}
+          onClick={toggleHokkaido}
+        >
+          홋카이도
+        </button>
+        {showHokkaido && (
+          <div className="hotel-buttons">
+            {renderUniqueTitleButtons(hokkaidoHotels, 'hokkaido')}
+          </div>
+        )}
+        <button
+          className="fixed-button"
+          style={{
+            display: 'block',
+            width: '100%',
+            height: '70px',
+            marginBottom: '20px',
+            padding: '15px',
+            backgroundColor: '#00BFFF',
+            color: 'white',
+            border: '1px solid #ccc',
+            borderRadius: '5px',
+            cursor: 'pointer'
+          }}
+          onClick={handleRandomRecommendation}
+        >
+          랜덤 호텔 추천
+        </button>
+      </div>
+
+      <main className="App-main" style={{ marginLeft: '250px', padding: '20px', width: '70%' }}>
+        <div className="accommodation-list">
+          {hotels.map((hotel, index) => (
+            <div key={index} className="accommodation-item">
+              <Accommodation hotel={hotel} index={index} />
+            </div>
+          ))}
+        </div>
+      </main>
+    </div>
+  );
 };
-
 
 export default Hotels;
