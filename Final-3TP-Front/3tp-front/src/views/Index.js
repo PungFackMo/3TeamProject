@@ -13,6 +13,7 @@ import DarkFooter from "../components/Footers/DarkFooter.js";
 import Tabs from "./index-sections/Tabs.js";
 import NucleoIcons from "./index-sections/NucleoIcons.js";
 import Download from "./index-sections/Download.js";
+import Carousel from "views/index-sections/Carousel";
 
 
 function Index() {
@@ -36,6 +37,7 @@ function Index() {
           <NucleoIcons />
           <Download />
           <Tabs />
+          <Carousel />
         </div>
         <DarkFooter />
       </div>

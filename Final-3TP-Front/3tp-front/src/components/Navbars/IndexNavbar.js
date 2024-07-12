@@ -18,6 +18,38 @@ import {
   UncontrolledTooltip,
 } from "reactstrap";
 
+const ReactSharedInternals = React.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+
+function handleConsoleError(error, level, argsWithFormat) {
+  // 여기에 에러 처리를 위한 로직을 추가하세요.
+  console.error("An error occurred while logging:", error);
+  console[level]('Fallback log:', ...argsWithFormat);
+}
+
+function printWarning(level, format, args) {
+  {
+    var ReactDebugCurrentFrame = ReactSharedInternals.ReactDebugCurrentFrame;
+    var stack = ReactDebugCurrentFrame.getStackAddendum();
+
+    if (stack !== '') {
+      format += '%s';
+      args = args.concat([stack]);
+    }
+
+    var argsWithFormat = args.map(function (item) {
+      return String(item);
+    });
+
+    argsWithFormat.unshift('Warning: ' + format);
+
+    try {
+      Function.prototype.apply.call(console[level], console, argsWithFormat);
+    } catch (error) {
+      handleConsoleError(error, level, argsWithFormat);
+    }
+  }
+}
+
 function IndexNavbar() {
   const location = useLocation();
   const navigate = useNavigate();
@@ -41,7 +73,7 @@ function IndexNavbar() {
     const fetchData = async () => {
       try {
         if (!user.userId) { // user 상태가 초기화되지 않았을 때만 API 호출
-          // console.log("상태가 초기화 되지 않았습니다.")
+          console.log("상태가 초기화 되지 않았습니다.")
           const response = await axios.get('http://localhost:8080/user', {
             withCredentials: true, // 자격 증명(쿠키, 인증 헤더 등)을 포함하여 HTTP 요청
           });
