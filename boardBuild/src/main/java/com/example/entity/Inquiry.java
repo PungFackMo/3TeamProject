@@ -7,6 +7,8 @@ import lombok.AllArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,15 +23,16 @@ public class Inquiry {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
-    
-    @OneToMany(mappedBy = "inquiry", cascade = CascadeType.ALL)
+
+    @OneToMany(mappedBy = "inquiry", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @OrderBy("createdAt DESC")
+    @JsonManagedReference // 순환 참조 방지
     private List<Comment> comments = new ArrayList<>();
-    
+
     @Lob
     private String content;
     private String author;
-    
+
     @CreationTimestamp
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
@@ -39,5 +42,4 @@ public class Inquiry {
     protected void onCreate() {
         createdAt = LocalDateTime.now();
     }
-
 }

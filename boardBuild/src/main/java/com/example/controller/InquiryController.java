@@ -9,9 +9,14 @@ import com.example.entity.Comment;
 import com.example.entity.Inquiry;
 import com.example.service.InquiryService;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 @RestController
 @RequestMapping("/api/inquiry")
 public class InquiryController {
+	
+	private static final Logger logger = LoggerFactory.getLogger(InquiryController.class);
 
     @Autowired
     private InquiryService inquiryService;
@@ -57,10 +62,9 @@ public class InquiryController {
         return inquiry.getComments();
     }
 
-    
     @PostMapping("/{id}/comments")
     public Comment addComment(@PathVariable Long id, @RequestBody Comment comment) {
+        logger.info("Add comment: " + comment.getText() + " to inquiry ID: " + id);
         return inquiryService.addComment(id, comment);
     }
-    
 }

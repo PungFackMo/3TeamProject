@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 
 import com.example.entity.Comment;
 import com.example.entity.Inquiry;
-import com.example.entity.Notice;
 import com.example.repository.InquiryRepository;
 
 import java.time.LocalDateTime;
@@ -61,11 +60,8 @@ public class InquiryService {
     public Comment addComment(Long inquiryId, Comment comment) {
         Inquiry inquiry = findById(inquiryId);
         comment.setInquiry(inquiry);
-        comment.setCreatedAt(LocalDateTime.now());
         inquiry.getComments().add(comment);
         inquiryRepository.save(inquiry);
         return comment;
     }
 }
-
-
