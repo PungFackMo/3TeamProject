@@ -17,16 +17,30 @@ import './Page.css';
 
 function InquiryPage() {
     const [inquiries, setInquiries] = useState([]);
+    const [currentUser, setCurrentUser] = useState(null);
     const navigate = useNavigate();
 
     useEffect(() => {
         axios.get('http://localhost:8080/api/inquiry')
-        .then(response => setInquiries(response.data))
-        .catch(error => console.error('There was an error fetching the inquiries!', error));
+            .then(response => setInquiries(response.data))
+            .catch(error => console.error('There was an error fetching the inquiries!', error));
+
+        // 로그인된 사용자 정보 가져오기
+        axios.get('http://localhost:8080/user', { withCredentials: true })
+            .then(response => {
+                setCurrentUser(response.data);
+            })
+            .catch(error => {
+                console.error('There was an error fetching the user info!', error);
+            });
     }, []);
 
     const handleNewInquiry = () => {
-        navigate('/inquiry/new');
+        if (currentUser) {
+            navigate('/inquiry/new');
+        } else {
+            navigate('/login-page');
+        }
     };
 
     return (
@@ -36,7 +50,7 @@ function InquiryPage() {
             <div
             className="page-header-image"
             style={{
-                backgroundImage: "url(" + require("../../assets/img/tokyo.jpg") + ")"
+                backgroundImage: "url(" + require("../../assets/img/Inquiry.jpg") + ")"
             }}
             ></div>
             <div className="content">

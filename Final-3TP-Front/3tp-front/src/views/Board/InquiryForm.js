@@ -25,14 +25,9 @@ function InquiryForm() {
       })
       .catch(error => {
         console.error('사용자 정보를 가져오는 중 오류가 발생했습니다.', error);
-        navigate('/login-page'); // 로그인되지 않은 경우 로그인 페이지로 리다이렉트
+        navigate('/login'); // 로그인되지 않은 경우 로그인 페이지로 리다이렉트
       });
   }, [navigate]);
-
-  // Axios의 기본 설정 변경
-  useEffect(() => {
-    axios.defaults.headers.post['Content-Type'] = 'application/json';
-  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -56,7 +51,7 @@ function InquiryForm() {
         <div
           className="page-header-image"
           style={{
-            backgroundImage: "url(" + require("../../assets/img/tokyo.jpg") + ")"
+            backgroundImage: "url(" + require("../../assets/img/Inquiry.jpg") + ")"
           }}
         ></div>
         <div className="content">
