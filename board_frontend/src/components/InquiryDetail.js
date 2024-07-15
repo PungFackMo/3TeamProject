@@ -120,8 +120,9 @@ function InquiryDetail() {
         <h2>댓글</h2>
         {comments.length === 0 && <p>등록된 댓글이 없습니다.</p>}
         {comments.map(comment => (
-          <div key={comment.id}>
+          <div key={comment.id} style={{ borderBottom: '1px solid #ddd', marginBottom: '10px', paddingBottom: '10px' }}>
             <p>{comment.text}</p>
+            <small>{comment.author} - {new Date(comment.createdAt).toLocaleString()}</small>
           </div>
         ))}
       </div>

@@ -19,7 +19,7 @@ public class InquiryService {
     public List<Inquiry> findAll() {
         return inquiryRepository.findAll();
     }
-    
+
     public List<Inquiry> findTop5Inquiries() {
         return inquiryRepository.findTop5ByOrderByCreatedAtDesc();
     }

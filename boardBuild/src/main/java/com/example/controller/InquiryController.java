@@ -15,8 +15,8 @@ import org.slf4j.LoggerFactory;
 @RestController
 @RequestMapping("/api/inquiry")
 public class InquiryController {
-	
-	private static final Logger logger = LoggerFactory.getLogger(InquiryController.class);
+
+    private static final Logger logger = LoggerFactory.getLogger(InquiryController.class);
 
     @Autowired
     private InquiryService inquiryService;
@@ -25,10 +25,10 @@ public class InquiryController {
     public List<Inquiry> getAllInquiries() {
         return inquiryService.findAll();
     }
-    
+
     @GetMapping("/recent")
     public List<Inquiry> getTop5Inquiries() {
-    	return inquiryService.findTop5Inquiries();
+        return inquiryService.findTop5Inquiries();
     }
 
     @GetMapping("/{id}")
@@ -55,7 +55,7 @@ public class InquiryController {
     public void incrementViewCount(@PathVariable Long id) {
         inquiryService.incrementViewCount(id);
     }
-    
+
     @GetMapping("/{id}/comments")
     public List<Comment> getCommentsByInquiryId(@PathVariable Long id) {
         Inquiry inquiry = inquiryService.findById(id);
