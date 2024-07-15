@@ -24,12 +24,14 @@ public class Comment {
     private Inquiry inquiry;
 
     private String text;
+    private String author;  // 작성자 필드 추가
 
     @CreationTimestamp
     private LocalDateTime createdAt;
 
-    public Comment(Inquiry inquiry, String text) {
+    public Comment(Inquiry inquiry, String text, String author) {
         this.inquiry = inquiry;
         this.text = text;
+        this.author = author;  // 생성자 수정
     }
 }
