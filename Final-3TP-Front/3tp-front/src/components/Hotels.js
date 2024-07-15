@@ -274,329 +274,314 @@ const Hotels = () => {
   },
 ];
 
-  const [showTokyo, setShowTokyo] = useState(false);
-  const [showOsaka, setShowOsaka] = useState(false);
-  const [showHokkaido, setShowHokkaido] = useState(false);
-  const [hotels, setHotels] = useState([]);
+const [showTokyo, setShowTokyo] = useState(false);
+const [showOsaka, setShowOsaka] = useState(false);
+const [showHokkaido, setShowHokkaido] = useState(false);
+const [hotels, setHotels] = useState([]);
 
-  const toggleTokyo = () => {
-    setShowTokyo(!showTokyo);
-    setShowOsaka(false);
-    setShowHokkaido(false);
-  };
+const toggleTokyo = () => {
+  setShowTokyo(!showTokyo);
+  setShowOsaka(false);
+  setShowHokkaido(false);
+};
 
-  const toggleOsaka = () => {
-    setShowOsaka(!showOsaka);
-    setShowTokyo(false);
-    setShowHokkaido(false);
-  };
+const toggleOsaka = () => {
+  setShowOsaka(!showOsaka);
+  setShowTokyo(false);
+  setShowHokkaido(false);
+};
 
-  const toggleHokkaido = () => {
-    setShowHokkaido(!showHokkaido);
-    setShowTokyo(false);
-    setShowOsaka(false);
-  };
+const toggleHokkaido = () => {
+  setShowHokkaido(!showHokkaido);
+  setShowTokyo(false);
+  setShowOsaka(false);
+};
 
-  const uniqueTitles = new Set();
+const uniqueTitles = new Set();
 
-  const scrollToAccommodation = (index, region) => {
-    let startIndex = 0;
-    if (region === 'tokyo') {
-      startIndex = 0;
-    } else if (region === 'osaka') {
-      startIndex = tokyoHotels.length;
-    } else if (region === 'hokkaido') {
-      startIndex = tokyoHotels.length + osakaHotels.length;
+const scrollToAccommodation = (index, region) => {
+  let startIndex = 0;
+  if (region === 'tokyo') {
+    startIndex = 0;
+  } else if (region === 'osaka') {
+    startIndex = tokyoHotels.length;
+  } else if (region === 'hokkaido') {
+    startIndex = tokyoHotels.length + osakaHotels.length;
+  }
+  const realIndex = startIndex + index;
+  const accommodationRef = document.getElementById(`accommodation-${realIndex}`);
+  if (accommodationRef) {
+    accommodationRef.scrollIntoView({ behavior: 'smooth' });
+  }
+};
+
+const renderUniqueTitleLinks = (hotels, region) => {
+  return hotels.map((hotel, index) => {
+    if (!uniqueTitles.has(hotel.title)) {
+      uniqueTitles.add(hotel.title);
+      return (
+        <a
+          key={index}
+          href="#"
+          className={`fixed-button ${region === 'tokyo' && showTokyo ? 'active' : ''} ${region === 'osaka' && showOsaka ? 'active' : ''} ${region === 'hokkaido' && showHokkaido ? 'active' : ''}`}
+          style={{
+            display: 'block',
+            width: '100%',
+            marginBottom: '10px',
+            padding: '10px 0',
+            backgroundColor: 'transparent',
+            color: region === 'tokyo' && showTokyo
+              ? '#00BFFF'
+              : region === 'osaka' && showOsaka
+              ? '#00BFFF'
+              : region === 'hokkaido' && showHokkaido
+              ? '#00BFFF'
+              : '#4CAF50',
+            cursor: 'pointer',
+            fontSize: '25px',
+            textDecoration: 'none',
+            textAlign: 'left',
+            lineHeight: '40px',
+          }}
+          onClick={(e) => {
+            e.preventDefault();
+            scrollToAccommodation(index, region);
+          }}
+        >
+          {hotel.title}
+        </a>
+      );
     }
-    const realIndex = startIndex + index;
-    const accommodationRef = document.getElementById(`accommodation-${realIndex}`);
-    if (accommodationRef) {
-      accommodationRef.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+    return null;
+  });
+};
 
-  const renderUniqueTitleLinks = (hotels, region) => {
-    return hotels.map((hotel, index) => {
-      if (!uniqueTitles.has(hotel.title)) {
-        uniqueTitles.add(hotel.title);
-        return (
-          <a
-            key={index}
-            href="#"
-            className={`fixed-button ${region === 'tokyo' && showTokyo ? 'active' : ''} ${region === 'osaka' && showOsaka ? 'active' : ''} ${region === 'hokkaido' && showHokkaido ? 'active' : ''}`}
-            style={{
-              display: 'block',
-              width: '100%',
-              height: '60px',
-              marginBottom: '10px',
-              padding: '10px',
-              backgroundColor: region === 'tokyo' && showTokyo
-                ? '#00BFFF'
-                : region === 'osaka' && showOsaka
-                ? '#00BFFF'
-                : region === 'hokkaido' && showHokkaido
-                ? '#00BFFF'
-                : '#4CAF50',
-              color: 'white',
-              border: '1px solid #ccc',
-              borderRadius: '5px',
-              cursor: 'pointer',
-              fontSize: '16px',
-              textDecoration: 'none',
-              textAlign: 'center',
-              lineHeight: '40px',
-            }}
-            onClick={(e) => {
-              e.preventDefault();
-              scrollToAccommodation(index, region);
-            }}
-          >
-            {hotel.title}
-          </a>
-        );
-      }
-      return null;
-    });
-  };
+const handleRandomRecommendation = () => {
+  const randomIndex = Math.floor(Math.random() * hotels.length);
+  scrollToAccommodation(randomIndex);
+};
 
-  const handleRandomRecommendation = () => {
-    const randomIndex = Math.floor(Math.random() * hotels.length);
-    scrollToAccommodation(randomIndex);
-  };
-
-  const Accommodation = ({ hotel, index }) => {
-    return (
-      <div className="accommodation" style={{ marginBottom: '20px', padding: '20px', backgroundColor: '#fff', border: '1px solid #ddd', width: '100%', boxSizing: 'border-box', maxWidth: '1000px' }}>
-        {hotel.image && (
-          <img
-            src={process.env.PUBLIC_URL + '/' + hotel.image}
-            alt={`${hotel.name} 이미지`}
-            style={{ width: '100%', height: 'auto' }}
-          />
-        )}
-        <div className="accommodation-details" style={{ marginTop: '20px' }}>
-          <h3 style={{ marginBottom: '5px' }}>{hotel.name}</h3>
-          <h4 style={{ marginBottom: '5px' }}>{hotel.location}</h4>
-          <p style={{ marginBottom: '5px' }}>{hotel.description}</p>
-        </div>
-      </div>
-    );
-  };
-
-  useEffect(() => {
-    setHotels([...tokyoHotels, ...osakaHotels, ...hokkaidoHotels]);
-  }, [tokyoHotels, osakaHotels, hokkaidoHotels]);
-
+const Accommodation = ({ hotel, index }) => {
   return (
-    <div className="HotelsPage" style={{ display: 'flex' }}>
-      <div
-        className="button-container"
-        style={{
-          position: 'fixed',
-          left: 0,
-          top: 0,
-          width: '400px',
-          padding: '20px',
-          backgroundColor: '#f8f8f8',
-          borderRight: '1px solid #ddd',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'flex-start',
-          marginBottom: '20px'
-        }}
-      >
-        <a
-          href="#"
-          className="toggle-button"
-          style={{
-            display: 'block',
-            width: '100%',
-            height: '70px',
-            marginBottom: '20px',
-            padding: '15px',
-            backgroundColor: showTokyo ? '#00BFFF' : '#4CAF50',
-            color: 'white',
-            border: '1px solid #ccc',
-            borderRadius: '5px',
-            cursor: 'pointer',
-            fontSize: '18px',
-            textDecoration: 'none',
-            textAlign: 'center',
-            lineHeight: '40px',
-            position: 'relative',
-          }}
-          onClick={(e) => {
-            e.preventDefault();
-            toggleTokyo();
-          }}
-        >
-          도쿄
-          <span
-            style={{
-              content: '',
-              position: 'absolute',
-              right: '10px',
-              top: '50%',
-              transform: 'translateY(-50%)',
-              width: '0',
-              height: '0',
-              borderLeft: '6px solid transparent',
-              borderRight: '6px solid transparent',
-              borderTop: '6px solid white',
-            }}
-          />
-        </a>
-        {showTokyo && (
-          <div className="hotel-buttons">
-            {renderUniqueTitleLinks(tokyoHotels, 'tokyo')}
-          </div>
-        )}
-        <a
-          href="#"
-          className="toggle-button"
-          style={{
-            display: 'block',
-            width: '100%',
-            height: '70px',
-            marginBottom: '20px',
-            padding: '15px',
-            backgroundColor: showOsaka ? '#00BFFF' : '#4CAF50',
-            color: 'white',
-            border: '1px solid #ccc',
-            borderRadius: '5px',
-            cursor: 'pointer',
-            fontSize: '18px',
-            textDecoration: 'none',
-            textAlign: 'center',
-            lineHeight: '40px',
-            position: 'relative',
-          }}
-          onClick={(e) => {
-            e.preventDefault();
-            toggleOsaka();
-          }}
-        >
-          오사카
-          <span
-            style={{
-              content: '',
-              position: 'absolute',
-              right: '10px',
-              top: '50%',
-              transform: 'translateY(-50%)',
-              width: '0',
-              height: '0',
-              borderLeft: '6px solid transparent',
-              borderRight: '6px solid transparent',
-              borderTop: '6px solid white',
-            }}
-          />
-        </a>
-        {showOsaka && (
-          <div className="hotel-buttons">
-            {renderUniqueTitleLinks(osakaHotels, 'osaka')}
-          </div>
-        )}
-        <a
-          href="#"
-          className="toggle-button"
-          style={{
-            display: 'block',
-            width: '100%',
-            height: '70px',
-            marginBottom: '20px',
-            padding: '15px',
-            backgroundColor: showHokkaido ? '#00BFFF' : '#4CAF50',
-            color: 'white',
-            border: '1px solid #ccc',
-            borderRadius: '5px',
-            cursor: 'pointer',
-            fontSize: '18px',
-            textDecoration: 'none',
-            textAlign: 'center',
-            lineHeight: '40px',
-            position: 'relative',
-          }}
-          onClick={(e) => {
-            e.preventDefault();
-            toggleHokkaido();
-          }}
-        >
-          홋카이도
-          <span
-            style={{
-              content: '',
-              position: 'absolute',
-              right: '10px',
-              top: '50%',
-              transform: 'translateY(-50%)',
-              width: '0',
-              height: '0',
-              borderLeft: '6px solid transparent',
-              borderRight: '6px solid transparent',
-              borderTop: '6px solid white',
-            }}
-          />
-        </a>
-        {showHokkaido && (
-          <div className="hotel-buttons">
-            {renderUniqueTitleLinks(hokkaidoHotels, 'hokkaido')}
-          </div>
-        )}
-        <a
-          href="#"
-          className="fixed-button"
-          style={{
-            display: 'block',
-            width: '100%',
-            height: '70px',
-            marginBottom: '20px',
-            padding: '15px',
-            backgroundColor: '#4CAF50',
-            color: 'white',
-            border: '1px solid #ccc',
-            borderRadius: '5px',
-            cursor: 'pointer',
-            fontSize: '18px',
-            textDecoration: 'none',
-            textAlign: 'center',
-            lineHeight: '40px',
-            position: 'relative',
-          }}
-          onClick={(e) => {
-            e.preventDefault();
-            handleRandomRecommendation();
-          }}
-        >
-          랜덤 호텔 추천
-          <span
-            style={{
-              content: '',
-              position: 'absolute',
-              right: '10px',
-              top: '50%',
-              transform: 'translateY(-50%)',
-              width: '0',
-              height: '0',
-              borderLeft: '6px solid transparent',
-              borderRight: '6px solid transparent',
-              borderTop: '6px solid white',
-            }}
-          />
-        </a>
+    <div className="accommodation" style={{ marginBottom: '20px', padding: '20px', backgroundColor: '#fff', border: '1px solid #ddd', width: '100%', boxSizing: 'border-box', maxWidth: '1000px' }}>
+      {hotel.image && (
+        <img
+          src={process.env.PUBLIC_URL + '/' + hotel.image}
+          alt={`${hotel.name} 이미지`}
+          style={{ width: '100%', height: 'auto' }}
+        />
+      )}
+      <div className="accommodation-details" style={{ marginTop: '20px' }}>
+        <h3 style={{ marginBottom: '5px' }}>{hotel.name}</h3>
+        <h4 style={{ marginBottom: '5px' }}>{hotel.location}</h4>
+        <p style={{ marginBottom: '5px' }}>{hotel.description}</p>
       </div>
-
-      <main className="App-main" style={{ marginLeft: '400px', padding: '20px', width: '70%' }}>
-        <div className="accommodation-list">
-          {hotels.map((hotel, index) => (
-            <div key={index} id={`accommodation-${index}`} className="accommodation-item">
-              <Accommodation hotel={hotel} index={index} />
-            </div>
-          ))}
-        </div>
-      </main>
     </div>
   );
+};
+
+useEffect(() => {
+  setHotels([...tokyoHotels, ...osakaHotels, ...hokkaidoHotels]);
+}, [tokyoHotels, osakaHotels, hokkaidoHotels]);
+
+return (
+  <div className="HotelsPage" style={{ display: 'flex' }}>
+    <div
+      className="button-container"
+      style={{
+        position: 'fixed',
+        left: 0,
+        top: 0,
+        width: '400px',
+        padding: '20px',
+        backgroundColor: '#f8f8f8',
+        borderRight: '1px solid #ddd',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'flex-start',
+        marginBottom: '20px'
+      }}
+    >
+      <a
+        href="#"
+        className="toggle-button"
+        style={{
+          display: 'block',
+          width: '100%',
+          marginBottom: '20px',
+          padding: '15px 0',
+          backgroundColor: 'transparent',
+          color: showTokyo ? '#00BFFF' : '#4CAF50',
+          cursor: 'pointer',
+          fontSize: '25px',
+          textDecoration: 'none',
+          textAlign: 'left',
+          lineHeight: '40px',
+          position: 'relative',
+        }}
+        onClick={(e) => {
+          e.preventDefault();
+          toggleTokyo();
+        }}
+      >
+        도쿄
+        <span
+          style={{
+            content: '',
+            position: 'absolute',
+            right: '10px',
+            top: '50%',
+            transform: 'translateY(-50%)',
+            width: '0',
+            height: '0',
+            borderLeft: '6px solid transparent',
+            borderRight: '6px solid transparent',
+            borderTop: '6px solid #4CAF50',
+          }}
+        />
+      </a>
+      {showTokyo && (
+        <div className="hotel-buttons">
+          {renderUniqueTitleLinks(tokyoHotels, 'tokyo')}
+        </div>
+      )}
+      <a
+        href="#"
+        className="toggle-button"
+        style={{
+          display: 'block',
+          width: '100%',
+          marginBottom: '20px',
+          padding: '15px 0',
+          backgroundColor: 'transparent',
+          color: showOsaka ? '#00BFFF' : '#4CAF50',
+          cursor: 'pointer',
+          fontSize: '25px',
+          textDecoration: 'none',
+          textAlign: 'left',
+          lineHeight: '40px',
+          position: 'relative',
+        }}
+        onClick={(e) => {
+          e.preventDefault();
+          toggleOsaka();
+        }}
+      >
+        오사카
+        <span
+          style={{
+            content: '',
+            position: 'absolute',
+            right: '10px',
+            top: '50%',
+            transform: 'translateY(-50%)',
+            width: '0',
+            height: '0',
+            borderLeft: '6px solid transparent',
+            borderRight: '6px solid transparent',
+            borderTop: '6px solid #4CAF50',
+          }}
+        />
+      </a>
+      {showOsaka && (
+        <div className="hotel-buttons">
+          {renderUniqueTitleLinks(osakaHotels, 'osaka')}
+        </div>
+      )}
+      <a
+        href="#"
+        className="toggle-button"
+        style={{
+          display: 'block',
+          width: '100%',
+          marginBottom: '20px',
+          padding: '15px 0',
+          backgroundColor: 'transparent',
+          color: showHokkaido ? '#00BFFF' : '#4CAF50',
+          cursor: 'pointer',
+          fontSize: '25px',
+          textDecoration: 'none',
+          textAlign: 'left',
+          lineHeight: '40px',
+          position: 'relative',
+        }}
+        onClick={(e) => {
+          e.preventDefault();
+          toggleHokkaido();
+        }}
+      >
+        홋카이도
+        <span
+          style={{
+            content: '',
+            position: 'absolute',
+            right: '10px',
+            top: '50%',
+            transform: 'translateY(-50%)',
+            width: '0',
+            height: '0',
+            borderLeft: '6px solid transparent',
+            borderRight: '6px solid transparent',
+            borderTop: '6px solid #4CAF50',
+          }}
+        />
+      </a>
+      {showHokkaido && (
+        <div className="hotel-buttons">
+          {renderUniqueTitleLinks(hokkaidoHotels, 'hokkaido')}
+        </div>
+      )}
+      <a
+        href="#"
+        className="fixed-button"
+        style={{
+          display: 'block',
+          width: '100%',
+          marginBottom: '20px',
+          padding: '15px 0',
+          backgroundColor: 'transparent',
+          color: '#4CAF50',
+          cursor: 'pointer',
+          fontSize: '25px',
+          textDecoration: 'none',
+          textAlign: 'left',
+          lineHeight: '40px',
+          position: 'relative',
+        }}
+        onClick={(e) => {
+          e.preventDefault();
+          handleRandomRecommendation();
+        }}
+      >
+        랜덤 호텔 추천
+        <span
+          style={{
+            content: '',
+            position: 'absolute',
+            right: '10px',
+            top: '50%',
+            transform: 'translateY(-50%)',
+            width: '0',
+            height: '0',
+            borderLeft: '6px solid transparent',
+            borderRight: '6px solid transparent',
+            borderTop: '6px solid #4CAF50',
+          }}
+        />
+      </a>
+    </div>
+
+    <main className="App-main" style={{ marginLeft: '400px', padding: '20px', width: '70%' }}>
+      <div className="accommodation-list">
+        {hotels.map((hotel, index) => (
+          <div key={index} id={`accommodation-${index}`} className="accommodation-item">
+            <Accommodation hotel={hotel} index={index} />
+          </div>
+        ))}
+      </div>
+    </main>
+  </div>
+);
 };
 
 export default Hotels;
