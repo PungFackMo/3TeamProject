@@ -18,8 +18,6 @@ import{
 
 
 
-
-
 const Hotels = () => {
   const tokyoHotels = [ {
     name: '나리타 게이트웨이 호텔 (Narita Gateway Hotel)',
@@ -413,7 +411,7 @@ return (
           className="button-container"
           style={{
             position: "sticky",
-            top: "300px", // 더 아래로 내리기 위해 조정
+            top: "280px", // 더 아래로 내리기 위해 조정
             width: "20rem",
             height: "calc(100vh - 100px)", // 전체 높이에서 더 아래로 내린 만큼 줄이기
             padding: "20px",
