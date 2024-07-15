@@ -56,7 +56,7 @@ function InquiryEditForm() {
         <div
           className="page-header-image"
           style={{
-            backgroundImage: "url(" + require("../../assets/img/tokyo.jpg") + ")"
+            backgroundImage: "url(" + require("../../assets/img/Inquiry.jpg") + ")"
           }}
         ></div>
         <div className="content">

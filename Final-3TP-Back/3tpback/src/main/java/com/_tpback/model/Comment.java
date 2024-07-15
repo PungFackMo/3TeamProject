@@ -20,12 +20,12 @@ public class Comment {
 
     @ManyToOne
     @JoinColumn(name = "inquiry_id")
-    @JsonBackReference // 순환 참조 방지
+    @JsonBackReference(value = "inquiry-comments") // 순환 참조 방지
     private Inquiry inquiry;
     
     @ManyToOne 
     @JoinColumn(name = "notice_id") 
-    @JsonBackReference // 순환 참조 방지
+    @JsonBackReference(value = "notice-comments") // 순환 참조 방지
     private Notice notice; // 공지사항에 연결됨
 
     private String text;

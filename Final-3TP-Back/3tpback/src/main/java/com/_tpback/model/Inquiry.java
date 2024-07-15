@@ -27,7 +27,7 @@ public class Inquiry {
 
     @OneToMany(mappedBy = "inquiry", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @OrderBy("createdAt DESC")
-    @JsonManagedReference // 순환 참조 방지
+    @JsonManagedReference (value = "inquiry-comments") // 순환 참조 방지
     private List<Comment> comments = new ArrayList<>();
 
     @Lob

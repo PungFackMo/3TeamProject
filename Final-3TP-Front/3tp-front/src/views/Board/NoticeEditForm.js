@@ -54,7 +54,7 @@ function NoticeEditForm() {
       <div className="page-header clear-filter" filter-color="blue">
         <div className="page-header-image"
           style={{
-            backgroundImage: "url(" + require("../../assets/img/tokyo.jpg") + ")"
+            backgroundImage: "url(" + require("../../assets/img/notice.jpg") + ")"
           }}
         ></div>
         <div className="content">
