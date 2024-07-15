@@ -160,10 +160,9 @@ function IndexNavbar() {
           <div className="navbar-translate">
             <NavbarBrand
               href="/"
-              target="_blank"
               id="navbar-brand"
             >
-              홈페이지 이름
+              CodeTrip Japan
             </NavbarBrand>
           </div>
           <Collapse
@@ -215,17 +214,17 @@ function IndexNavbar() {
                   onClick={(e) => e.preventDefault()}
                 >
                   <Airplane size={20}/>&nbsp;&nbsp;&nbsp;
-                  <p>(메인 컨텐츠 이름)</p>
+                  <p>Travel</p>
                 </DropdownToggle>
                 {/* 드랍 메뉴 */}
                 <DropdownMenu>
-                  <DropdownItem to="" tag={Link}> {/* to에 링크 달면 그 페이지로 넘어감 */}
+                  <DropdownItem to="/hotels" tag={Link}> {/* to에 링크 달면 그 페이지로 넘어감 */}
                     <i className="now-ui-icons business_chart-pie-36 mr-1"></i>
-                    (메인 컨텐츠 이름)
+                    숙소 추천 받기
                   </DropdownItem>
-                  <DropdownItem to="" tag={Link}> {/* to에 링크 달면 그 페이지로 넘어감 */}
+                  <DropdownItem to="/destinationpage" tag={Link}> {/* to에 링크 달면 그 페이지로 넘어감 */}
                     <i className="now-ui-icons business_chart-pie-36 mr-1"></i>
-                    (메인 컨텐츠 이름)
+                    관광지 추천 받기
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
@@ -241,17 +240,17 @@ function IndexNavbar() {
                   onClick={(e) => e.preventDefault()}
                 >
                   <Airplane size={20}/>&nbsp;&nbsp;&nbsp;
-                  <p>(게시판 이름)</p>
+                  <p>Board</p>
                 </DropdownToggle>
                 {/* 드랍 메뉴 */}
                 <DropdownMenu>
-                  <DropdownItem to="" tag={Link}> {/* to에 링크 달면 그 페이지로 넘어감 */}
+                  <DropdownItem to="/notice" tag={Link}> {/* to에 링크 달면 그 페이지로 넘어감 */}
                     <i className="now-ui-icons business_chart-pie-36 mr-1"></i>
-                    (게시판 이름)
+                    공지사항
                   </DropdownItem>
-                  <DropdownItem to="" tag={Link}> {/* to에 링크 달면 그 페이지로 넘어감 */}
+                  <DropdownItem to="/inquiry" tag={Link}> {/* to에 링크 달면 그 페이지로 넘어감 */}
                     <i className="now-ui-icons business_chart-pie-36 mr-1"></i>
-                    (게시판 이름)
+                    문의사항
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>

@@ -9,13 +9,12 @@ import "./assets/demo/demo.css?v=1.5.0";
 
 // pages for this kit
 import Index from "./views/Index.js";
-import LoginPage from "./views/examples/LoginPage.js";
-import JoinPage from "./views/examples/JoinPage.js";
-import UpdateUserPage from "./views/examples/UpdateUserPage.js";
-import UserInfoPage from "./views/examples/UserInfoPage.js";
-import Hotels from "components/Hotels";
-import DestinationPage from "components/DestinationPage";
-import Typography from "views/index-sections/Typography";
+import LoginPage from "./views/Login/LoginPage.js";
+import JoinPage from "./views/Login/JoinPage.js";
+import UpdateUserPage from "./views/Login/UpdateUserPage.js";
+import UserInfoPage from "./views/Login/UserInfoPage.js";
+import Hotels from "./views/Main-content/Hotels";
+import DestinationPage from "./views/Main-content/DestinationPage";
 
 
 import InquiryPage from "views/Board/InquiryPage";
@@ -40,7 +39,6 @@ root.render(
       <Route path="/user-info" element={<UserInfoPage />} />
       <Route path="/hotels" element={<Hotels />} />
       <Route path="/destinationpage" element={<DestinationPage />} />
-      <Route path="/typography" element={<Typography />} />
 
       <Route path="/inquiry/*" element={<InquiryRoutes />} />
       <Route path="/notice/*" element={<NoticeRoutes />} />

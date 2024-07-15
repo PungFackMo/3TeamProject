@@ -5,19 +5,14 @@ import "assets/css/now-ui-kit.css";
 // import "assets/css/now-ui-kit.min.css";
 // import "assets/css/now-ui-kit.css.map";
 import "assets/demo/demo.css";
-import ExamplesNavbar from './Navbars/ExamplesNavbar';
-import DarkFooter from './Footers/DarkFooter';
+import DarkFooter from '../../components/Footers/DarkFooter';
 
 import{
   Card,
   ListGroup,
   ListGroupItem
 } from "reactstrap";
-
-
-
-
-
+import IndexNavbar from '../../components/Navbars/IndexNavbar';
 
 
 const Hotels = () => {
@@ -405,9 +400,7 @@ useEffect(() => {
 
 return (
   <>
-    <ExamplesNavbar />
-
-    
+    <IndexNavbar />
     <div className="HotelsPage" style={{ display: "flex", marginTop: "60px" }}>
         <div
           className="button-container"
@@ -417,7 +410,6 @@ return (
             width: "20rem",
             height: "calc(100vh - 100px)", // 전체 높이에서 더 아래로 내린 만큼 줄이기
             padding: "20px",
-            backgroundColor: "#f8f8f8",
             display: "flex",
             flexDirection: "column",
             alignItems: "flex-start",
@@ -565,17 +557,6 @@ return (
           </Card>
         </div>
 
-        <div
-          className="sidebar-border"
-          style={{
-            position: "fixed",
-            top: "0",
-            left: "20rem",
-            height: "100%",
-            borderRight: "1px solid #ddd",
-          }}
-        />
-
         <main className="App-main" style={{ marginLeft: "10rem", padding: "20px", width: "calc(100% - 21rem)", marginTop: "60px" }}>
           <div className="accommodation-list">
             {hotels.map((hotel, index) => (
@@ -586,6 +567,7 @@ return (
           </div>
         </main>
       </div>
+      <DarkFooter/>
     </>
   );
 };

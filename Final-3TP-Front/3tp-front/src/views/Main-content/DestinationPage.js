@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import '../assets/css/DestinationPage.css';
-import ExamplesNavbar from './Navbars/ExamplesNavbar';
+import '../../assets/css/DestinationPage.css';
+import ExamplesNavbar from '../../components/Navbars/ExamplesNavbar';
 import { Container, Row } from 'reactstrap';
-import DarkFooter from './Footers/DarkFooter';
+import DarkFooter from '../../components/Footers/DarkFooter';
 
 const DestinationPage = () => {
   // 모든 지역 정보 배열
