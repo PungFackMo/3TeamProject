@@ -17,6 +17,17 @@ import Hotels from "components/Hotels";
 import DestinationPage from "components/DestinationPage";
 import Typography from "views/index-sections/Typography";
 
+
+import InquiryPage from "views/Board/InquiryPage";
+import InquiryForm from "views/Board/InquiryForm";
+import InquiryDetail from "views/Board/InquiryDetail";
+import InquiryEditForm from "views/Board/InquiryEditForm";
+
+import NoticePage from "views/Board/NoticePage";
+import NoticeForm from "views/Board/NoticeForm";
+import NoticeDetail from "views/Board/NoticeDetail";
+import NoticeEditForm from "views/Board/NoticeEditForm";
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
@@ -31,10 +42,37 @@ root.render(
       <Route path="/destinationpage" element={<DestinationPage />} />
       <Route path="/typography" element={<Typography />} />
 
+      <Route path="/inquiry/*" element={<InquiryRoutes />} />
+      <Route path="/notice/*" element={<NoticeRoutes />} />
+
       <Route path="*" element={<Navigate to="/index" replace />} />
     </Routes>
   </BrowserRouter>
 );
+
+function InquiryRoutes() {
+  return (
+    <Routes>
+      <Route path="/" element={<InquiryPage />} />
+      <Route path="new" element={<InquiryForm />} />
+      <Route path=":id" element={<InquiryDetail />} />
+      <Route path=":id/edit" element={<InquiryEditForm />} />
+    </Routes>
+  );
+}
+
+function NoticeRoutes() {
+  return (
+    <Routes>
+      <Route path="/" element={<NoticePage />} />
+      <Route path="new" element={<NoticeForm />} />
+      <Route path=":id" element={<NoticeDetail />} />
+      <Route path=":id/edit" element={<NoticeEditForm />} />
+    </Routes>
+  );
+}
+
+
 // import React from 'react';
 // import ReactDOM from 'react-dom/client';
 // import './index.css';
