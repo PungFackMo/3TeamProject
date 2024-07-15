@@ -5,6 +5,8 @@ import "assets/css/now-ui-kit.css";
 // import "assets/css/now-ui-kit.min.css";
 // import "assets/css/now-ui-kit.css.map";
 import "assets/demo/demo.css";
+import ExamplesNavbar from './Navbars/ExamplesNavbar';
+import DarkFooter from './Footers/DarkFooter';
 
 import{
   Card,
@@ -402,206 +404,190 @@ useEffect(() => {
 }, [tokyoHotels, osakaHotels, hokkaidoHotels]);
 
 return (
-  <div className="HotelsPage" style={{ display: 'flex' }}>
-    <div
-      className="button-container"
-      style={{
-        position: 'fixed',
-        top: '50px', // Adjust as needed based on your layout
-        left: '20px', // Adjust as needed based on your layout
-        width: '400px',
-        padding: '20px',
-        backgroundColor: '#f8f8f8',
-        borderRight: '1px solid #ddd',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'flex-start',
-        marginBottom: '20px',
-        zIndex: '1000', // Ensure the container is above other content if needed
-        overflowY: 'auto', // Enable scrolling if content exceeds container height
-        maxHeight: 'calc(100vh - 100px)', // Adjust max height based on your layout
-      }}
-    >
-      <a
-        href="#"
-        className="toggle-button"
-        style={{
-          display: 'block',
-          width: '100%',
-          marginBottom: '20px',
-          padding: '15px 0',
-          backgroundColor: 'transparent',
-          color: showTokyo ? '#00BFFF' : '#4CAF50',
-          cursor: 'pointer',
-          fontSize: '20px', // 글자 크기를 20px로 설정
-          textDecoration: 'none',
-          textAlign: 'left',
-          lineHeight: '40px',
-          position: 'relative',
-        }}
-        onClick={(e) => {
-          e.preventDefault();
-          toggleTokyo();
-        }}
-      >
-        도쿄
-        <span
-          style={{
-            content: '',
-            position: 'absolute',
-            right: '10px',
-            top: '50%',
-            transform: 'translateY(-50%)',
-            width: '0',
-            height: '0',
-            borderLeft: '6px solid transparent',
-            borderRight: '6px solid transparent',
-            borderTop: '6px solid #4CAF50',
-          }}
-        />
-      </a>
-      {showTokyo && (
-        <div className="hotel-buttons">
-          {renderUniqueTitleLinks(tokyoHotels, 'tokyo')}
-        </div>
-      )}
-      <a
-        href="#"
-        className="toggle-button"
-        style={{
-          display: 'block',
-          width: '100%',
-          marginBottom: '20px',
-          padding: '15px 0',
-          backgroundColor: 'transparent',
-          color: showOsaka ? '#00BFFF' : '#4CAF50',
-          cursor: 'pointer',
-          fontSize: '20px', // 글자 크기를 20px로 설정
-          textDecoration: 'none',
-          textAlign: 'left',
-          lineHeight: '40px',
-          position: 'relative',
-        }}
-        onClick={(e) => {
-          e.preventDefault();
-          toggleOsaka();
-        }}
-      >
-        오사카
-        <span
-          style={{
-            content: '',
-            position: 'absolute',
-            right: '10px',
-            top: '50%',
-            transform: 'translateY(-50%)',
-            width: '0',
-            height: '0',
-            borderLeft: '6px solid transparent',
-            borderRight: '6px solid transparent',
-            borderTop: '6px solid #4CAF50',
-          }}
-        />
-      </a>
-      {showOsaka && (
-        <div className="hotel-buttons">
-          {renderUniqueTitleLinks(osakaHotels, 'osaka')}
-        </div>
-      )}
-      <a
-        href="#"
-        className="toggle-button"
-        style={{
-          display: 'block',
-          width: '100%',
-          marginBottom: '20px',
-          padding: '15px 0',
-          backgroundColor: 'transparent',
-          color: showHokkaido ? '#00BFFF' : '#4CAF50',
-          cursor: 'pointer',
-          fontSize: '20px', // 글자 크기를 20px로 설정
-          textDecoration: 'none',
-          textAlign: 'left',
-          lineHeight: '40px',
-          position: 'relative',
-        }}
-        onClick={(e) => {
-          e.preventDefault();
-          toggleHokkaido();
-        }}
-      >
-        홋카이도
-        <span
-          style={{
-            content: '',
-            position: 'absolute',
-            right: '10px',
-            top: '50%',
-            transform: 'translateY(-50%)',
-            width: '0',
-            height: '0',
-            borderLeft: '6px solid transparent',
-            borderRight: '6px solid transparent',
-            borderTop: '6px solid #4CAF50',
-          }}
-        />
-      </a>
-      {showHokkaido && (
-        <div className="hotel-buttons">
-          {renderUniqueTitleLinks(hokkaidoHotels, 'hokkaido')}
-        </div>
-      )}
-      <a
-        href="#"
-        className="fixed-button"
-        style={{
-          display: 'block',
-          width: '100%',
-          marginBottom: '20px',
-          padding: '15px 0',
-          backgroundColor: 'transparent',
-          color: '#4CAF50',
-          cursor: 'pointer',
-          fontSize: '20px', // 글자 크기를 20px로 설정
-          textDecoration: 'none',
-          textAlign: 'left',
-          lineHeight: '40px',
-          position: 'relative',
-        }}
-        onClick={(e) => {
-          e.preventDefault();
-          handleRandomRecommendation();
-        }}
-      >
-        랜덤 호텔 추천
-        <span
-          style={{
-            content: '',
-            position: 'absolute',
-            right: '10px',
-            top: '50%',
-            transform: 'translateY(-50%)',
-            width: '0',
-            height: '0',
-            borderLeft: '6px solid transparent',
-            borderRight: '6px solid transparent',
-            borderTop: '6px solid #4CAF50',
-          }}
-        />
-      </a>
-    </div>
+  <>
+    <ExamplesNavbar />
 
-    <main className="App-main" style={{ marginLeft: '400px', padding: '20px', width: '70%' }}>
-      <div className="accommodation-list">
-        {hotels.map((hotel, index) => (
-          <div key={index} id={`accommodation-${index}`} className="accommodation-item">
-            <Accommodation hotel={hotel} index={index} />
+    
+    <div className="HotelsPage" style={{ display: "flex", marginTop: "60px" }}>
+        <div
+          className="button-container"
+          style={{
+            position: "sticky",
+            top: "300px", // 더 아래로 내리기 위해 조정
+            width: "20rem",
+            height: "calc(100vh - 100px)", // 전체 높이에서 더 아래로 내린 만큼 줄이기
+            padding: "20px",
+            backgroundColor: "#f8f8f8",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "flex-start",
+            marginBottom: "20px",
+            zIndex: "1000",
+          }}
+        >
+          <Card style={{ width: "100%" }}>
+            <ListGroup flush>
+              <ListGroupItem
+                tag="button"
+                action
+                style={{
+                  cursor: "pointer",
+                  backgroundColor: "#f8f8f8",
+                  color: showTokyo ? "#00BFFF" : "#4CAF50",
+                  marginBottom: "20px",
+                  padding: "15px 0",
+                  border: "none",
+                  textAlign: "left",
+                  position: "relative",
+                  fontSize: "1.2rem", // 글자 크기 설정
+                }}
+                onClick={toggleTokyo}
+              >
+                도쿄
+                <span
+                  style={{
+                    content: "",
+                    position: "absolute",
+                    right: "10px",
+                    top: "50%",
+                    transform: "translateY(-50%)",
+                    width: "0",
+                    height: "0",
+                    borderLeft: "6px solid transparent",
+                    borderRight: "6px solid transparent",
+                    borderTop: showTokyo ? "6px solid #00BFFF" : "6px solid #4CAF50",
+                  }}
+                />
+              </ListGroupItem>
+              {showTokyo && renderUniqueTitleLinks(tokyoHotels, "tokyo")}
+
+              <ListGroupItem
+                tag="button"
+                action
+                style={{
+                  cursor: "pointer",
+                  backgroundColor: "#f8f8f8",
+                  color: showOsaka ? "#00BFFF" : "#4CAF50",
+                  marginBottom: "20px",
+                  padding: "15px 0",
+                  border: "none",
+                  textAlign: "left",
+                  position: "relative",
+                  fontSize: "1.2rem", // 글자 크기 설정
+                }}
+                onClick={toggleOsaka}
+              >
+                오사카
+                <span
+                  style={{
+                    content: "",
+                    position: "absolute",
+                    right: "10px",
+                    top: "50%",
+                    transform: "translateY(-50%)",
+                    width: "0",
+                    height: "0",
+                    borderLeft: "6px solid transparent",
+                    borderRight: "6px solid transparent",
+                    borderTop: showOsaka ? "6px solid #00BFFF" : "6px solid #4CAF50",
+                  }}
+                />
+              </ListGroupItem>
+              {showOsaka && renderUniqueTitleLinks(osakaHotels, "osaka")}
+
+              <ListGroupItem
+                tag="button"
+                action
+                style={{
+                  cursor: "pointer",
+                  backgroundColor: "#f8f8f8",
+                  color: showHokkaido ? "#00BFFF" : "#4CAF50",
+                  marginBottom: "20px",
+                  padding: "15px 0",
+                  border: "none",
+                  textAlign: "left",
+                  position: "relative",
+                  fontSize: "1.2rem", // 글자 크기 설정
+                }}
+                onClick={toggleHokkaido}
+              >
+                홋카이도
+                <span
+                  style={{
+                    content: "",
+                    position: "absolute",
+                    right: "10px",
+                    top: "50%",
+                    transform: "translateY(-50%)",
+                    width: "0",
+                    height: "0",
+                    borderLeft: "6px solid transparent",
+                    borderRight: "6px solid transparent",
+                    borderTop: showHokkaido ? "6px solid #00BFFF" : "6px solid #4CAF50",
+                  }}
+                />
+              </ListGroupItem>
+              {showHokkaido && renderUniqueTitleLinks(hokkaidoHotels, "hokkaido")}
+
+              <ListGroupItem
+                tag="button"
+                action
+                style={{
+                  cursor: "pointer",
+                  backgroundColor: "#f8f8f8",
+                  color: "#4CAF50",
+                  marginBottom: "20px",
+                  padding: "15px 0",
+                  border: "none",
+                  textAlign: "left",
+                  position: "relative",
+                  fontSize: "1.2rem", // 글자 크기 설정
+                }}
+                onClick={handleRandomRecommendation}
+              >
+                랜덤 호텔 추천
+                <span
+                  style={{
+                    content: "",
+                    position: "absolute",
+                    right: "10px",
+                    top: "50%",
+                    transform: "translateY(-50%)",
+                    width: "0",
+                    height: "0",
+                    borderLeft: "6px solid transparent",
+                    borderRight: "6px solid transparent",
+                    borderTop: "6px solid #4CAF50",
+                  }}
+                />
+              </ListGroupItem>
+            </ListGroup>
+          </Card>
+        </div>
+
+        <div
+          className="sidebar-border"
+          style={{
+            position: "fixed",
+            top: "0",
+            left: "20rem",
+            height: "100%",
+            borderRight: "1px solid #ddd",
+          }}
+        />
+
+        <main className="App-main" style={{ marginLeft: "10rem", padding: "20px", width: "calc(100% - 21rem)", marginTop: "60px" }}>
+          <div className="accommodation-list">
+            {hotels.map((hotel, index) => (
+              <div key={index} id={`accommodation-${index}`} className="accommodation-item">
+                <Accommodation hotel={hotel} index={index} />
+              </div>
+            ))}
           </div>
-        ))}
+        </main>
       </div>
-    </main>
-  </div>
-);
+    </>
+  );
 };
 
 export default Hotels;
