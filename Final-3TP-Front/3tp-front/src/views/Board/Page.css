@@ -1,0 +1,20 @@
+.card-inquiry {
+  margin-top: 70px; /* 페이지 헤더와 겹치지 않도록 여백 추가 */
+}
+
+.card-inquiry .table {
+  margin-bottom: 0; /* 테이블 아래 여백 제거 */
+}
+
+.card-inquiry .table th,
+.card-inquiry .table td {
+  vertical-align: middle; /* 셀 내용 세로 정렬 */
+}
+
+.card-inquiry .title {
+  margin-bottom: 0.5rem; /* 카드 제목과 테이블 사이 간격 조정 */
+}
+
+.card-inquiry .btn-round {
+  width: 150px; /* 버튼 너비 설정 */
+}
