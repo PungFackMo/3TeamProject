@@ -328,8 +328,8 @@ const Hotels = () => {
               width: '100%',
               height: '70px', // 버튼 세로 사이즈 늘리기
               marginBottom: '20px', // 간격 줄이기
-              padding: '15px', // 내부 패딩 늘리기
-              backgroundColor: '#4CAF50',
+              padding: '40px', // 내부 패딩 늘리기
+              backgroundColor: '#00bccc',
               color: 'white',
               border: '1px solid #ccc', // 테두리 추가
               borderRadius: '5px', // 둥근 테두리
