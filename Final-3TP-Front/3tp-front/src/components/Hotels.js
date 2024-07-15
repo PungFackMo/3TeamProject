@@ -1,4 +1,21 @@
 import React, { useState, useEffect } from 'react';
+// styles
+import "assets/css/bootstrap.min.css";
+import "assets/css/now-ui-kit.css";
+// import "assets/css/now-ui-kit.min.css";
+// import "assets/css/now-ui-kit.css.map";
+import "assets/demo/demo.css";
+
+import{
+  Card,
+  ListGroup,
+  ListGroupItem
+} from "reactstrap";
+
+
+
+
+
 
 
 const Hotels = () => {
@@ -338,7 +355,7 @@ const renderUniqueTitleLinks = (hotels, region) => {
               ? '#00BFFF'
               : '#4CAF50',
             cursor: 'pointer',
-            fontSize: '25px',
+            fontSize: '16px',
             textDecoration: 'none',
             textAlign: 'left',
             lineHeight: '40px',
@@ -390,8 +407,8 @@ return (
       className="button-container"
       style={{
         position: 'fixed',
-        left: 0,
-        top: 0,
+        top: '50px', // Adjust as needed based on your layout
+        left: '20px', // Adjust as needed based on your layout
         width: '400px',
         padding: '20px',
         backgroundColor: '#f8f8f8',
@@ -399,7 +416,10 @@ return (
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'flex-start',
-        marginBottom: '20px'
+        marginBottom: '20px',
+        zIndex: '1000', // Ensure the container is above other content if needed
+        overflowY: 'auto', // Enable scrolling if content exceeds container height
+        maxHeight: 'calc(100vh - 100px)', // Adjust max height based on your layout
       }}
     >
       <a
@@ -413,7 +433,7 @@ return (
           backgroundColor: 'transparent',
           color: showTokyo ? '#00BFFF' : '#4CAF50',
           cursor: 'pointer',
-          fontSize: '25px',
+          fontSize: '20px', // 글자 크기를 20px로 설정
           textDecoration: 'none',
           textAlign: 'left',
           lineHeight: '40px',
@@ -456,7 +476,7 @@ return (
           backgroundColor: 'transparent',
           color: showOsaka ? '#00BFFF' : '#4CAF50',
           cursor: 'pointer',
-          fontSize: '25px',
+          fontSize: '20px', // 글자 크기를 20px로 설정
           textDecoration: 'none',
           textAlign: 'left',
           lineHeight: '40px',
@@ -499,7 +519,7 @@ return (
           backgroundColor: 'transparent',
           color: showHokkaido ? '#00BFFF' : '#4CAF50',
           cursor: 'pointer',
-          fontSize: '25px',
+          fontSize: '20px', // 글자 크기를 20px로 설정
           textDecoration: 'none',
           textAlign: 'left',
           lineHeight: '40px',
@@ -542,7 +562,7 @@ return (
           backgroundColor: 'transparent',
           color: '#4CAF50',
           cursor: 'pointer',
-          fontSize: '25px',
+          fontSize: '20px', // 글자 크기를 20px로 설정
           textDecoration: 'none',
           textAlign: 'left',
           lineHeight: '40px',
