@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import '../assets/css/DestinationPage.css';
+import ExamplesNavbar from './Navbars/ExamplesNavbar';
+import { Container, Row } from 'reactstrap';
+import DarkFooter from './Footers/DarkFooter';
 
 const DestinationPage = () => {
   // 모든 지역 정보 배열
@@ -151,7 +154,7 @@ const DestinationPage = () => {
   ];
 
   // 선택된 지역의 정보를 저장할 상태 변수
-  const [selectedDestination, setSelectedDestination] = useState(null);
+  const [selectedDestination, setSelectedDestination] = useState(allDestinations[0]);
 
   // 페이지가 처음 로드될 때 랜덤으로 지역 선택
   useEffect(() => {
@@ -168,26 +171,38 @@ const DestinationPage = () => {
   };
 
   return (
-    <div className="DestinationPage">
-      <header className="App-header">
-        <h1>일본 여행명소 추천</h1>
-      </header>
-      <main className="App-main">
-        <button className="random-button" onClick={handleRandomRecommendation}>
-          랜덤명소 추천
-        </button>
-        {selectedDestination && (
-          <div className="destination-container">
-            <div className="destination">
-              <img src={selectedDestination.image} alt={selectedDestination.name} />
-              <h2>{selectedDestination.name}</h2>
-              <h4>{selectedDestination.location}</h4>
-              <p>{selectedDestination.description}</p>
-            </div>
-          </div>
-        )}
-      </main>
-    </div>
+    <>
+    <ExamplesNavbar />
+      <div className="DestinationPage">
+        <div className="page-header clear-filter">
+          <div
+            className="page-header-image"
+            style={{
+              backgroundImage: `url(${selectedDestination.image})`,
+              opacity: '0.5'
+            }}
+          ></div>
+            <Container>
+              {selectedDestination && (
+                <div className="destination" >
+                  <img src={selectedDestination.image} alt={selectedDestination.name} />
+                  <h2>{selectedDestination.name}</h2>
+                  <h4>{selectedDestination.location}</h4>
+                  <p>{selectedDestination.description}</p>
+                  <div
+                  className="page-header-image"
+                  ></div>
+                </div>
+              )}
+              <br/>
+                  <button className="random-button" onClick={handleRandomRecommendation}>
+                    랜덤명소 추천
+                  </button>
+            </Container>
+        </div>
+      </div>
+      <DarkFooter />
+    </>
   );
 };
 
