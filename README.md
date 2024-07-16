@@ -148,14 +148,14 @@ C:.
 │           │       └───────────────IndexNavbar.js
 │           └───views
 │               ├───Board
-│               │   ├───────────────InquiryDetail.js
-│               │   ├───────────────InquiryEditForm.js
-│               │   ├───────────────InquiryForm.js
-│               │   ├───────────────InquiryPage.js
-│               │   ├───────────────NoticeDetail.js
-│               │   ├───────────────NoticeEditForm.js
-│               │   ├───────────────NoticeForm.js
-│               │   └───────────────NoticePage.js
+│               │   ├───────────────InquiryDetail.js (문의 글 상세보기 페이지)
+│               │   ├───────────────InquiryEditForm.js (문의 글 수정 페이지)
+│               │   ├───────────────InquiryForm.js (문의 글 작성 페이지)
+│               │   ├───────────────InquiryPage.js (문의 글 리스트 페이지)
+│               │   ├───────────────NoticeDetail.js (공지 글 상세보기 페이지)
+│               │   ├───────────────NoticeEditForm.js (공지 글 수정 페이지)
+│               │   ├───────────────NoticeForm.js (공지 글 작성 페이지)
+│               │   └───────────────NoticePage.js (공지 글 리스트 페이지)
 │               ├───index-sections (메인페이지 섹션)
 │               │   ├───────────────Main.js
 │               │   ├───────────────Slide.js
@@ -171,5 +171,6 @@ C:.
 ├───old
 ├───readme-img
 └───Readme.md
+
 
 ```
