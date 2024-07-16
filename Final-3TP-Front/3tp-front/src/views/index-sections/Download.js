@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
-import { Link , BrowserRouter, Route, Routes, Navigate} from "react-router-dom";
-import DestinationPage from "components/DestinationPage";
-import Hotels from "components/Hotels";
+import { Link } from "react-router-dom";
 
 // reactstrap components
 import { Button, Container, Row, Col} from "reactstrap";

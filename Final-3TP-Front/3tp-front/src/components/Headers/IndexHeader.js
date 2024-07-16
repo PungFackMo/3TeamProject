@@ -21,9 +21,9 @@ function IndexHeader() {
   }, []);
 
   const images = [
-    { id: 1, src: '/img/hotkaido.jpg', alt: 'Banner 1', text: '홋카이도', link: '/page1' },
-    { id: 2, src: '/img/oosaka.jpg', alt: 'Banner 2', text: '오사카', link: '/page2' },
-    { id: 3, src: '/img/tokyo.jpg', alt: 'Banner 3', text: '도쿄', link: '/page3' },
+    { id: 1, src: '/img/hotkaido.jpg', alt: 'Banner 1', text: '홋카이도', link: '/hotels' },
+    { id: 2, src: '/img/oosaka.jpg', alt: 'Banner 2', text: '오사카', link: '/hotels' },
+    { id: 3, src: '/img/tokyo.jpg', alt: 'Banner 3', text: '도쿄', link: '/hotels' },
   ];
 
   const [currentBanner, setCurrentBanner] = useState(0);

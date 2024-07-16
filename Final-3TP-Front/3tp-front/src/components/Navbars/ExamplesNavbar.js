@@ -140,17 +140,17 @@ function ExamplesNavbar() {
                 MyPage
               </DropdownItem>}
               <DropdownItem divider></DropdownItem>
-              <DropdownItem href="/">
-                게시판 페이지
+              <DropdownItem href="/hotels">
+                숙소 추천
               </DropdownItem>
-              <DropdownItem href="/">
-                게시판 페이지
+              <DropdownItem href="/destinationpage">
+                관광지 추천
               </DropdownItem>
               <DropdownItem divider></DropdownItem>
-              <DropdownItem href="/">
+              <DropdownItem href="/notice">
                 공지사항
               </DropdownItem>
-              <DropdownItem href="/">
+              <DropdownItem href="/inquiry">
                 문의사항
               </DropdownItem>
             </DropdownMenu>
@@ -160,7 +160,7 @@ function ExamplesNavbar() {
               href="/index"
               id="navbar-brand"
             >
-              홈페이지 이름
+              CodeTrip Japan
             </NavbarBrand>
             <UncontrolledTooltip target="#navbar-brand">
               무더운 여름! <br/>시원한 일본으로 떠나봐요!
@@ -186,13 +186,13 @@ function ExamplesNavbar() {
           >
             <Nav navbar>
               <NavItem>
-                <NavLink to="/" tag={Link}>
-                  메인 컨텐츠 이름
+                <NavLink to="/destinationpage" tag={Link}>
+                  관광지 추천
                 </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="/">
-                  게시판 이름
+                <NavLink href="/notice">
+                  공지사항
                 </NavLink>
               </NavItem>
               <NavItem>
