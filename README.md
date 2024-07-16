@@ -1,7 +1,7 @@
 # 코리아 IT 아카데미 정처기 3Team Project
 ## 1. 프로젝트 제목 - CodeTrip Japan
  - 🚗 일본 관광 및 숙소 추천 사이트 만들기
-<p align="center"><img src="image.png" width="300"px></p>
+<p align="center"><img src="./readme-img/image-1.png" width="300"px></p>
 
 ## 2. 프로젝트 정보
 - 코리아IT아카데미 정보처리기능사 팀 프로젝트
