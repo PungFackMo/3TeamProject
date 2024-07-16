@@ -90,7 +90,6 @@ $ npm start
 | <img src="./readme-img/image-11.png" alt="문의사항" style="height: 200px;" /> | <img src="./readme-img/image-12.png" alt="새글작성문의" style="height: 200px;" /> |
 | 문의사항 - 본글 페이지 | -                  |
 | <img src="./readme-img/image-13.png" alt="본글문의" style="height: 200px;" /> | -  
-![alt text](image.png)![alt text](image-1.png)![alt text](image-2.png)![alt text](image-3.png)![alt text](image-4.png)![alt text](image.png)![alt text](image-1.png)![alt text](image-5.png)
 
 ## 07. 아키텍쳐
 ### 디렉터리 구조
@@ -108,23 +107,23 @@ C:.
 │       │       │           ├───config────────SecurityConfig.java (Spring Security의 설정을 정의)
 │       │       │           │   └───auth──────UserDetailsServiceImpl.java (Spring Security의 UserDetailsService 인터페이스를 구현)
 │       │       │           ├───controller
-│       │       │           │   ├─────────────InquiryController.java
-│       │       │           │   ├─────────────NoticeController.java
-│       │       │           │   └─────────────UserController.java
+│       │       │           │   ├─────────────InquiryController.java(문의사항 조회, 생성, 수정, 삭제 및 댓글 관련 기능)
+│       │       │           │   ├─────────────NoticeController.java(공지사항 조회, 생성, 수정, 삭제 및 댓글 관련 기능)
+│       │       │           │   └─────────────UserController.java(회원가입, 로그인, 사용자 정보 조회 및 수정, 유효성 검사, 사용자 삭제 기능)
 │       │       │           ├───model
-│       │       │           │   ├─────────────Comment.java
-│       │       │           │   ├─────────────Inquiry.java
-│       │       │           │   ├─────────────Notice.java
+│       │       │           │   ├─────────────Comment.java(문의나 공지사항에 대한 댓글)
+│       │       │           │   ├─────────────Inquiry.java(문의사항)
+│       │       │           │   ├─────────────Notice.java(공지사항)
 │       │       │           │   └─────────────UserDto.java (사용자 정보를 나타내는 데이터 전송 객체)
 │       │       │           ├───repository
-│       │       │           │   ├─────────────CommentRepository.java
-│       │       │           │   ├─────────────InquiryRepository.java
-│       │       │           │   ├─────────────NoticeRepository.java
-│       │       │           │   └─────────────UserRepository.java
+│       │       │           │   ├─────────────CommentRepository.java (Comment 엔티티에 대한 CRUD 작업을 수행하는 JPA 리포지토리 인터페이스)
+│       │       │           │   ├─────────────InquiryRepository.java (Inquiry 엔티티에 대한 CRUD 작업을 수행하는 JPA 리포지토리 인터페이스)
+│       │       │           │   ├─────────────NoticeRepository.java (Notice 엔티티에 대한 CRUD 작업을 수행하는 JPA 리포지토리 인터페이스)
+│       │       │           │   └─────────────UserRepository.java (UserDto 엔티티에 대한 CRUD 작업을 수행하는 JPA 리포지토리 인터페이스)
 │       │       │           └───service
-│       │       │               ├─────────────InquiryService.java
-│       │       │               ├─────────────NoticeService.java
-│       │       │               └─────────────UserService.java
+│       │       │               ├─────────────InquiryService.java (Inquiry 엔티티에 대한 CRUD 작업 및 관련 비즈니스 로직을 처리하는 서비스 클래스)
+│       │       │               ├─────────────NoticeService.java (Notice 엔티티에 대한 CRUD 작업 및 최근 공지 조회를 포함한 비즈니스 로직을 처리하는 서비스 클래스)
+│       │       │               └─────────────UserService.java(사용자 관리 기능을 제공하며, 사용자 가입, 정보 수정, 유효성 검사 및 삭제 기능을 포함하는 서비스 클래스)
 │       │       └───resources
 │       │           └─────────────application.properties
 │       └───target
@@ -159,18 +158,18 @@ C:.
 │               │   ├───────────────NoticeEditForm.js
 │               │   ├───────────────NoticeForm.js
 │               │   └───────────────NoticePage.js
-│               ├───index-sections
+│               ├───index-sections (메인페이지 섹션)
 │               │   ├───────────────Main.js
 │               │   ├───────────────Slide.js
 │               │   └───────────────Tabs.js
 │               ├───Login
-│               │   ├───────────────JoinPage.js
-│               │   ├───────────────LoginPage.js
-│               │   ├───────────────UpdateUserPage.js
-│               │   └───────────────UserInfoPage.js
+│               │   ├───────────────JoinPage.js (회원가입 페이지)
+│               │   ├───────────────LoginPage.js (로그인 페이지)
+│               │   ├───────────────UpdateUserPage.js (회원정보수정 페이지)
+│               │   └───────────────UserInfoPage.js (회원정보 페이지)
 │               └───Main-content
-│                   ├───────────────DestinationPage.js
-│                   └───────────────Hotels.js
+│                   ├───────────────DestinationPage.js (관광지 추천 페이지)
+│                   └───────────────Hotels.js (숙소 추천 페이지)
 ├───old
 ├───readme-img
 └───Readme.md
