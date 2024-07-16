@@ -18,7 +18,7 @@
 
 이름         |       역할       |       깃허브주소
 ---          |        ---        |         ---
-여정모       | Spring Security를 이용한 로그인 기능 구현     |https://github.com/PungFackMo
+여정모       | 메인페이지 제작 및 Spring Security를 이용한 로그인 기능 구현     |https://github.com/PungFackMo
 손명관       | 지역별 명소 추천, 호텔 추천 페이지 구현     |https://github.com/mkson30
 이단비       | 게시판 & 댓글 기능 구현 및 로그인과 연동   |https://github.com/arin608
 
